@@ -1,1 +1,11 @@
 # bd-project
+
+
+add to ~/.gitconfig
+
+# .gitconfig file in your home folder
+[diff "pandoc"]
+  textconv=pandoc --to=markdown
+  prompt = false
+[alias]
+  wdiff = diff --word-diff=color --unified=1
