@@ -1,0 +1,40 @@
+
+|| -> Chave primária
+
+FORNECEDOR(|nif|, nome)
+
+CATEGORIA(|nome|)
+
+CATEGORIA_SIMPLES(|nome|)
+    nome: FK CATEGORIA(nome)
+
+SUPER_CATEGORIA(|nome|, nome_sub)
+    nome: FK CATEGORIA(nome)
+    nome_sub: FK CATEGORIA(nome)
+
+CORREDOR(|nro|, largura)
+
+PRATELEIRA(|lado|, |altura|, |nro|)
+    nro: FK CORREDOR(nro)
+
+FORNECEDOR_PRIMARIO(|nif|, |ean|, data)
+    nif: FK FORNECEDOR(nif)
+    ean: FK PRODUTO(ean)
+
+PRODUTO(|ean|, design, nif_primario, nif_secundario, nome)
+    nif_primario: FK FORNECEDOR_PRIMARIO(nif)
+    nif_secundario: FK FORNECEDOR(nif)
+    NOTNULL(nif)
+    nome: FK CATEGORIA(nome)
+    NOTNULL(nome)
+    \\falta RI's
+
+PLANOGRAMA(|ean|, |lado|, |altura|, faces, unidades, loc)
+    ean: FK PRODUTO(ean)
+    lado, altura: FK PRATELEIRA(lado, altura)
+
+EVENTO_REPOSICAO(|operador|, |instante|)
+
+REPOSICAO(|operador|, |instante|, |ean|, |lado|, |altura|)
+    operador, instance: FK EVENTO_REPOSICAO(operador, instance)
+    ean, lado, altura: FK PLANOGRAMA(ean, lado, altura)
