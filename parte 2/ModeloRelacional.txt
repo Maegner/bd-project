@@ -2,39 +2,50 @@
 || -> Chave primária
 
 FORNECEDOR(|nif|, nome)
+    IC-1: Fornecedor nao pode ser primario e secundario do mesmo produto
 
 CATEGORIA(|nome|)
+    IC-2: Categoria tem de ser ou uma CATEGORIA_SIMPLES ou uma SUPER_CATEGORIA
 
 CATEGORIA_SIMPLES(|nome|)
     nome: FK CATEGORIA(nome)
 
-SUPER_CATEGORIA(|nome|, nome_sub)
+SUPER_CATEGORIA(|nome|)
     nome: FK CATEGORIA(nome)
-    nome_sub: FK CATEGORIA(nome)
+    IC-3: Super categoria tem de ter, pelo menos, uma sub-categoria
+
+CONSTITUIDA(|nome_categoria|, |nome_super_categoria|)
+    nome_categoria: FK CATEGORIA(nome)
+    nome_super_categoria: FK SUPER_CATEGORIA(nome)
+    IC-4: Nao podem existir ciclos nas associacoes de categorias
+    IC-5: Uma categoria nao pode ser constituida por si propria
 
 CORREDOR(|nro|, largura)
 
 PRATELEIRA(|lado|, |altura|, |nro|)
+    unique(lado, altura)
     nro: FK CORREDOR(nro)
 
 FORNECEDOR_PRIMARIO(|nif|, |ean|, data)
     nif: FK FORNECEDOR(nif)
     ean: FK PRODUTO(ean)
 
-PRODUTO(|ean|, design, nif_primario, nif_secundario, nome)
-    nif_primario: FK FORNECEDOR_PRIMARIO(nif)
-    nif_secundario: FK FORNECEDOR(nif)
+PRODUTO(|ean|, design, nif, nome)
+    nif: FK FORNECEDOR(nif)
     NOTNULL(nif)
+    IC-6: Produto tem de ter, pelo menos, 1 fornecedor secundario
     nome: FK CATEGORIA(nome)
     NOTNULL(nome)
-    \\falta RI's
 
 PLANOGRAMA(|ean|, |lado|, |altura|, faces, unidades, loc)
     ean: FK PRODUTO(ean)
     lado, altura: FK PRATELEIRA(lado, altura)
 
 EVENTO_REPOSICAO(|operador|, |instante|)
+    IC-7: Evento reposicao tem de ter, pelo menos, um planograma
+    IC-8: Instante da reposicao tem de ser menor do que o instante atual
 
-REPOSICAO(|operador|, |instante|, |ean|, |lado|, |altura|)
-    operador, instance: FK EVENTO_REPOSICAO(operador, instance)
+REPOSICAO(|operador|, |instante|, |ean|, |lado|, |altura|, unidades)
+    operador, instante: FK EVENTO_REPOSICAO(operador, instante)
     ean, lado, altura: FK PLANOGRAMA(ean, lado, altura)
+    IC-9: Nao podem ser repostas mais unidades do que as especificadas no planograma
