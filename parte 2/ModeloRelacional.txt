@@ -37,7 +37,7 @@ PRODUTO(|ean|, design, nif, nome)
     nome: FK CATEGORIA(nome)
     NOTNULL(nome)
 
-PLANOGRAMA(|ean|, |lado|, |altura|, faces, unidades, loc)
+PLANOGRAMA(|ean|, |lado|, |altura|, faces, max_unidades, loc)
     ean: FK PRODUTO(ean)
     lado, altura: FK PRATELEIRA(lado, altura)
 
