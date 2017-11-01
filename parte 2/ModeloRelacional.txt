@@ -1,9 +1,6 @@
 
 || -> Chave primária
 
-FORNECEDOR(|nif|, nome)
-    IC-1: Fornecedor nao pode ser primario e secundario do mesmo produto
-
 CATEGORIA(|nome|)
     IC-2: Categoria tem de ser ou uma CATEGORIA_SIMPLES ou uma SUPER_CATEGORIA
 
@@ -26,15 +23,18 @@ PRATELEIRA(|lado|, |altura|, |nro|)
     unique(lado, altura)
     nro: FK CORREDOR(nro)
 
-FORNECEDOR_SECUNDARIO(|nif_sec|, |ean|, data)
-    nif_sec: FK FORNECEDOR(nif)
+FORNECEDOR(|nif|, nomeFornecedor)
+    IC-1: Fornecedor nao pode ser primario e secundario do mesmo produto
+
+FORNECEDOR_SECUNDARIO(|nif|, |ean|, data)
+    nif: FK FORNECEDOR(nif)
     ean: FK PRODUTO(ean)
 
-PRODUTO(|ean|, design, nif_prim, nome)
-    nif_prim: FK FORNECEDOR(nif)
+PRODUTO(|ean|, design, nif, nomeCategoria)
+    nif: FK FORNECEDOR(nif)
     NOTNULL(nif_prim)
     IC-6: Produto tem de ter, pelo menos, 1 fornecedor secundario
-    nome: FK CATEGORIA(nome)
+    nomeCategoria: FK CATEGORIA(nome)
     NOTNULL(nome)
 
 PLANOGRAMA(|ean|, |lado|, |altura|, faces, max_unidades, loc)
