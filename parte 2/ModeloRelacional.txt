@@ -30,7 +30,7 @@ FORNECEDOR_PRIMARIO(|nif|, |ean|, data)
     nif: FK FORNECEDOR(nif)
     ean: FK PRODUTO(ean)
 
-FORNECEDOR_SECUNDARIO(|nif|, |ean|, data)
+FORNECEDOR_SECUNDARIO(|nif|, |ean|)
     nif: FK FORNECEDOR(nif)
     ean: FK PRODUTO(ean)
 
