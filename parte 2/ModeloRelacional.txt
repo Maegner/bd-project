@@ -36,10 +36,8 @@ FORNECEDOR_SECUNDARIO(|nif|, |ean|)
 
 PRODUTO(|ean|, design, nif, nomeCategoria)
     nif: FK FORNECEDOR(nif)
-    NOTNULL(nif_prim)
     IC-6: Produto tem de ter, pelo menos, 1 fornecedor secundario
     nomeCategoria: FK CATEGORIA(nome)
-    NOTNULL(nome)
 
 PLANOGRAMA(|ean|, |lado|, |altura|, faces, max_unidades, loc)
     ean: FK PRODUTO(ean)
