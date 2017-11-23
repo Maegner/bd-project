@@ -1,0 +1,153 @@
+Id,Name,Shape Library,Page ID,Contained By,Line Source,Line Destination,Source Arrow,Destination Arrow,Text Area 1
+1,Page,,,,,,,,default
+2,Process,Flowchart Shapes,1,,,,,,
+3,Imported Shape,,1,,,,,,Supermercado
+4,Imported Shape,,1,,,,,,NIF_Supermercado
+5,Imported Shape,,1,,,,,,Nome
+6,Imported Shape,,1,,,,,,Morada
+7,Imported Shape,,1,,,,,,Largura
+8,Imported Shape,,1,,,,,,
+9,Imported Shape,,1,,,,,,
+10,Text,Default,1,,,,,,Corredores
+11,Imported Shape,,1,,,,,,
+12,Imported Shape,,1,,,,,,
+13,Text,Default,1,,,,,,organizado
+14,Imported Shape,,1,,,,,,
+15,Imported Shape,,1,,,,,,
+16,Text,Default,1,,,,,,Prateleira
+17,Imported Shape,,1,,,,,,N_Unidades
+18,Imported Shape,,1,,,,,,N_frentes
+19,Imported Shape,,1,,,,,,
+20,Imported Shape,,1,,,,,,
+21,Text,Default,1,,,,,,organizado
+22,Imported Shape,,1,,,,,,Categoria
+23,Merge,Flowchart Shapes,1,,,,,,
+24,Text,Default,1,,,,,,disjoint
+25,Imported Shape,,1,,,,,,Categoria_Simples
+26,Imported Shape,,1,,,,,,Super_Categoria
+27,Decision,Flowchart Shapes,1,,,,,,
+28,Text,Default,1,,,,,,< contem_sub_categoria
+29,Imported Shape,,1,,,,,,Produto
+30,Merge,Flowchart Shapes,1,,,,,,
+31,Text,Default,1,,,,,,disjoint
+32,Imported Shape,,1,,,,,,Normal
+33,Imported Shape,,1,,,,,,Granel
+34,Imported Shape,,1,,,,,,Marca
+35,Imported Shape,,1,,,,,,Nome
+36,Imported Shape,,1,,,,,,Fornecedor
+37,Merge,Flowchart Shapes,1,,,,,,
+38,Text,Default,1,,,,,,overlaping
+39,Imported Shape,,1,,,,,,Secundario
+40,Imported Shape,,1,,,,,,Primario
+41,Imported Shape,,1,,,,,,NIF_Fornecedor
+42,Imported Shape,,1,,,,,,Empregado
+43,Merge,Flowchart Shapes,1,,,,,,
+44,Text,Default,1,,,,,,disjoint
+45,Imported Shape,,1,,,,,,Noturno
+46,Imported Shape,,1,,,,,,Diuno
+47,Imported Shape,,1,,,,,,Nome
+48,Imported Shape,,1,,,,,,NIF_Empregado
+49,Imported Shape,,1,,,,,,Compensação
+50,Merge,Flowchart Shapes,1,,,,,,
+51,Text,Default,1,,,,,,overlapse
+52,Imported Shape,,1,,,,,,Especialista
+53,Imported Shape,,1,,,,,,Geral
+54,Imported Shape,,1,,,,,,Especialidade
+55,Decision,Flowchart Shapes,1,,,,,,
+56,Text,Default,1,,,,,,repõe
+57,Decision,Flowchart Shapes,1,,,,,,
+58,Text,Default,1,,,,,,< backup
+59,Decision,Flowchart Shapes,1,,,,,,
+60,Text,Default,1,,,,,,pertence >
+61,Decision,Flowchart Shapes,1,,,,,,
+62,Text,Default,1,,,,,,pertence >
+63,Decision,Flowchart Shapes,1,,,,,,
+64,Text,Default,1,,,,,,tem >
+65,Imported Shape,,1,,,,,,Data
+66,Decision,Flowchart Shapes,1,,,,,,
+67,Text,Default,1,,,,,,trabalha_em  >
+68,Imported Shape,,1,,,,,,Numero_Corredor
+69,Text,Default,1,,,,,,--------------------------
+70,Imported Shape,,1,,,,,,Localizacao
+71,Imported Shape,,1,,,,,,EAN
+72,Imported Shape,,1,,,,,,Designação
+73,Imported Shape,,1,,,,,,Nome
+74,Imported Shape,,1,,,,,,N_Unidades
+75,Decision,Flowchart Shapes,1,,,,,,
+76,Text,Default,1,,,,,,< repoe
+77,Imported Shape,,1,,,,,,
+78,Imported Shape,,1,,,,,,
+79,Text,Default,1,,,,,,Reposicao
+80,Imported Shape,,1,,,,,,
+81,Imported Shape,,1,,,,,,
+82,Text,Default,1,,,,,, < e_reposto
+83,Decision,Flowchart Shapes,1,,,,,,
+84,Text,Default,1,,,,,,planograma
+85,Imported Shape,,1,,,,,,altura
+86,Text,Default,1,,,,,,---------
+87,Imported Shape,,1,,,,,,lado
+88,Text,Default,1,,,,,,---------
+89,Imported Shape,,1,,,,,,Instante
+90,Text,Default,1,,,,,,------------
+91,Line,,1,,4,3,None,None,
+92,Line,,1,,5,3,None,None,
+93,Line,,1,,6,3,None,None,
+94,Line,,1,,3,11,None,None,
+95,Line,,1,,12,8,Arrow,None,
+96,Line,,1,,29,83,None,Arrow,
+97,Line,,1,,70,98,None,None,
+98,Line,,1,,18,83,None,None,
+99,Line,,1,,85,15,None,None,
+100,Line,,1,,87,14,None,None,
+101,Line,,1,,14,20,None,Arrow,
+102,Line,,1,,19,9,None,None,
+103,Line,,1,,83,15,None,None,
+104,Line,,1,,22,23,None,None,
+105,Line,,1,,25,23,None,None,
+106,Line,,1,,26,23,None,None,
+107,Line,,1,,27,22,Arrow,None,
+108,Line,,1,,27,26,None,None,
+109,Line,,1,,29,30,None,None,
+110,Line,,1,,30,32,None,None,
+111,Line,,1,,33,30,None,None,
+112,Line,,1,,61,22,None,None,
+113,Line,,1,,61,29,Arrow,None,
+114,Line,,1,,34,32,None,None,
+115,Line,,1,,35,33,None,None,
+116,Line,,1,,36,37,None,None,
+117,Line,,1,,37,40,None,None,
+118,Line,,1,,39,37,None,None,
+119,Line,,1,,41,36,None,None,
+120,Line,,1,,39,59,None,None,
+121,Line,,1,,63,29,Arrow,None,
+122,Line,,1,,59,29,None,None,
+123,Line,,1,,45,43,None,None,
+124,Line,,1,,46,43,None,None,
+125,Line,,1,,3,66,None,None,
+126,Line,,1,,66,42,Arrow,None,
+127,Line,,1,,49,45,None,None,
+128,Line,,1,,52,50,None,None,
+129,Line,,1,,53,50,None,None,
+130,Line,,1,,54,52,None,None,
+131,Line,,1,,43,42,None,None,
+132,Line,,1,,50,42,None,None,
+133,Line,,1,,53,57,None,Arrow,
+134,Line,,1,,57,42,None,None,
+135,Line,,1,,42,55,None,Arrow,
+136,Line,,1,,55,29,None,Arrow,
+137,Line,,1,,65,63,None,None,
+138,Line,,1,,48,42,None,None,
+139,Line,,1,,7,8,None,None,
+140,Line,,1,,68,8,None,None,
+141,Line,,1,,40,63,None,None,
+142,Line,,1,,71,29,None,None,
+143,Line,,1,,72,29,None,None,
+144,Line,,1,,73,22,None,None,
+145,Line,,1,,77,75,None,Arrow,
+146,Line,,1,,75,42,None,None,
+147,Line,,1,,77,89,None,None,
+148,Line,,1,,81,77,Arrow,None,
+149,Line,,1,,17,98,None,None,
+150,Line,,1,,47,42,None,None,
+151,Line,,1,,74,77,None,None,
+152,Line,,1,,81,2,None,None,
