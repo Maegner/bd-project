@@ -5,20 +5,22 @@ CREATE TABLE Categoria(
 
 CREATE TABLE Categoria_Simples(
     nome VARCHAR(50) NOT NULL,
+    unique(nome),
     FOREIGN KEY (nome) REFERENCES Categoria
 );
 
 CREATE TABLE Super_Categoria(
     nome VARCHAR(50) NOT NULL,
+    unique(nome),
     FOREIGN KEY (nome) REFERENCES Categoria
 );
 
 CREATE TABLE Constituida(
     super_categoria VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
-    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria,
-    FOREIGN KEY (categoria) REFERENCES Categoria_Simples,
-    PRIMARY KEY(super_categoria,categoria)
+    PRIMARY KEY(super_categoria,categoria),
+    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome),
+    FOREIGN KEY (categoria) REFERENCES Categoria_Simples(nome)
 );
 
 CREATE TABLE Fornecedor(
@@ -69,8 +71,7 @@ CREATE TABLE Planograma(
     altura VARCHAR(5) NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
-    FOREIGN KEY(lado) REFERENCES Prateleira,
-    FOREIGN KEY(altura) REFERENCES Prateleira
+    FOREIGN KEY(lado,altura) REFERENCES Prateleira,
 );
 
 CREATE TABLE EventoReposicao(
@@ -89,10 +90,8 @@ CREATE TABLE Reposicao(
     instante TIMESTAMP NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
-    FOREIGN KEY(lado) REFERENCES Prateleira,
-    FOREIGN KEY(altura) REFERENCES Prateleira,
-    FOREIGN KEY(operador) REFERENCES EventoReposicao,
-    FOREIGN KEY(instante) REFERENCES EventoReposicao
+    FOREIGN KEY(lado,altura) REFERENCES Prateleira,
+    FOREIGN KEY(operador,instante) REFERENCES EventoReposicao
 );
 
 ALTER TABLE EventoReposicao
