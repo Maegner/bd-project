@@ -1,0 +1,35 @@
+17:22:56.629 [Thread-0] DEBUG openstacklib.Abstrato - [abstractExists - projectExists] init
+17:22:56.871 [Thread-0] DEBUG openstacklib.Abstrato - [abstractExists - projectExists] project p-chat-dev exists
+17:22:56.873 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] init
+17:22:57.054 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] project p-chat-dev exists with id 82e06c52b2a240c8a2c0ccd7c0108933
+17:22:57.251 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] init
+17:22:57.450 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] project p-chat-dev exists with id 82e06c52b2a240c8a2c0ccd7c0108933
+17:22:58.196 [Thread-0] DEBUG openstacklib.Quantum - [projectList] completed:
+Project Name: p-chat-dev
+Project ID: 82e06c52b2a240c8a2c0ccd7c0108933
+Domain ID: 30897c24fe6948c68139bc4fc41a9022
+Expires: 2020-01-31T00:00:00Z
+Centro de Custo: 8423
+
+---------- USERS ----------
+ist155912
+ist168505
+ist155972
+---------------------------
+
+---------- API KEYS ----------
+User: cfOsQMd96IMQmVcucFce2wKoJMIC1gMsn0DYdnkX
+Password: aCyPvGbXnJJd88ki4qgviDr7xi0BPizKCn3CSbbL
+------------------------------
+
+---------- RegionA ----------
+CORES: 16
+RAM: 32768 MB
+DISK: 600 GB
+-----------------------------
+---------- RegionT ----------
+CORES: 16
+RAM: 32768 MB
+DISK: 600 GB
+-----------------------------
+

@@ -4,33 +4,23 @@ CREATE TABLE Categoria(
 );
 
 CREATE TABLE Categoria_Simples(
-    FOREIGN KEY (nome) REFERENCES Categoria(nome),
-    PRIMARY KEY(nome)
+    nome VARCHAR(50) NOT NULL,
+    FOREIGN KEY (nome) REFERENCES Categoria,
+    PRIMARY KEY (nome)
 );
 
 CREATE TABLE Super_Categoria(
-    FOREIGN KEY (nome) REFERENCES Categoria(nome),
-    PRIMARY KEY(nome)
+    nome VARCHAR(50) NOT NULL,
+    FOREIGN KEY (nome) REFERENCES Categoria,
+    PRIMARY KEY (nome)
 );
 
 CREATE TABLE Constituida(
-    
-    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome),
-    FOREIGN KEY (categoria_simples) REFERENCES Categoria_Simples(nome),
-    PRIMARY KEY(super_categoria,categoria_simples)
-
-);
-
-CREATE TABLE Produto(
-    
-    ean VARCHAR(25) NOT NULL,
-    design VARCHAR(50),
-    dataFornecedorPrimario DATE,
-    
-    FOREIGN KEY(Categoria) REFERENCES Categoria(nome),
-    FOREIGN KEY(forn_Primario) REFERENCES Fornecedor(nif),
-
-    PRIMARY KEY (ean)
+    super_categoria VARCHAR(50) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria,
+    FOREIGN KEY (categoria) REFERENCES Categoria_Simples,
+    PRIMARY KEY(super_categoria,categoria)
 );
 
 CREATE TABLE Fornecedor(
@@ -44,6 +34,15 @@ CREATE TABLE Fornecedor_secundario(
     FOREIGN KEY(ean) REFERENCES Produto(ean),
     PRIMARY KEY(nif,ean),
 );
+
+CREATE TABLE Produto(
+    categoria VARCHAR(50) NOT NULL,
+    forn_primario VARCHAR(9) NOT NULL,    
+    FOREIGN KEY(categoria) REFERENCES Categoria,
+    FOREIGN KEY(forn_primario) REFERENCES Fornecedor,
+    PRIMARY KEY (categoria,forn_primario)
+);
+
 
 CREATE TABLE Corredor(
     numero INT NOT NULL,
