@@ -54,6 +54,7 @@ CREATE TABLE Corredor(
 CREATE TABLE Prateleira(
     lado VARCHAR(5) NOT NULL,
     altura VARCHAR(5) NOT NULL,
+    nro INT NOT NULL,
     PRIMARY KEY(lado,altura),
     FOREIGN KEY(nro) REFERENCES Corredor
 );
@@ -62,27 +63,36 @@ CREATE TABLE Planograma(
     face VARCHAR(5),
     unidades INT,
     localizacao VARCHAR(10),
+    nro INT NOT NULL,
+    ean VARCHAR(25) NOT NULL,
+    lado VARCHAR(5) NOT NULL,
+    altura VARCHAR(5) NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
-    FOREIGN KEY(ean) REFERENCES Produto(ean),
-    FOREIGN KEY(lado) REFERENCES Prateleira(lado),
-    FOREIGN KEY(altura) REFERENCES Prateleira(altura)
+    FOREIGN KEY(ean) REFERENCES Produto,
+    FOREIGN KEY(lado) REFERENCES Prateleira,
+    FOREIGN KEY(altura) REFERENCES Prateleira
 );
 
 CREATE TABLE EventoReposicao(
-    operador VARCHAR(25),
-    instante TIMESTAMP,
+    operador VARCHAR(25) NOT NULL,
+    instante TIMESTAMP NOT NULL,
     PRIMARY KEY(operador,instante)   
 );
 
 CREATE TABLE Reposicao(
     unidades INT,
-    FOREIGN KEY(numero) REFERENCES Corredor(numero),
-    FOREIGN KEY(ean) REFERENCES Produto(ean),
-    FOREIGN KEY(lado) REFERENCES Prateleira(lado),
-    FOREIGN KEY(altura) REFERENCES Prateleira(altura),
-    FOREIGN KEY(operador) REFERENCES EventoReposicao(operador),
-    FOREIGN KEY(instante) REFERENCES EventoReposicao(instante),
-    PRIMARY KEY(ean,numero,lado,lado,altura,operador,instante)
+    nro INT NOT NULL,
+    ean VARCHAR(25) NOT NULL,
+    lado VARCHAR(5) NOT NULL,
+    altura VARCHAR(5) NOT NULL,
+    operador VARCHAR(25) NOT NULL,
+    instante TIMESTAMP NOT NULL,
+    FOREIGN KEY(nro) REFERENCES Corredor,
+    FOREIGN KEY(ean) REFERENCES Produto,
+    FOREIGN KEY(lado) REFERENCES Prateleira,
+    FOREIGN KEY(altura) REFERENCES Prateleira,
+    FOREIGN KEY(operador) REFERENCES EventoReposicao,
+    FOREIGN KEY(instante) REFERENCES EventoReposicao
 );
 
 ALTER TABLE EventoReposicao
