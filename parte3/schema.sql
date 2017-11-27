@@ -51,7 +51,7 @@ CREATE TABLE Corredor(
     nro INT NOT NULL,
     largura INT,
     PRIMARY KEY(nro)
-)
+);
 
 CREATE TABLE Prateleira(
     lado VARCHAR(5) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE Planograma(
     altura VARCHAR(5) NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
-    FOREIGN KEY(lado,altura) REFERENCES Prateleira,
+    FOREIGN KEY(lado,altura) REFERENCES Prateleira
 );
 
 CREATE TABLE EventoReposicao(
