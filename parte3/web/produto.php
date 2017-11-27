@@ -25,7 +25,7 @@
             $sql = "INSERT INTO Produto(ean, design, categoria, forn_primario, data)
                     VALUES ($ean, $designacao, $categoria, $primario, $data);"
             ;
-        }
+        }// Tem de fazer input de um fornecedor secundario tbem RI-RE3​: Todo o EAN​ de produto​ tem de existir na relação fornece_sec
         else {
             $sql = "DELETE FROM Produto
                     WHERE ean = $ean;"

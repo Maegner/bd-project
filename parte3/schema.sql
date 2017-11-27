@@ -51,7 +51,7 @@ CREATE TABLE Corredor(
     nro INT NOT NULL,
     largura INT,
     PRIMARY KEY(nro)
-)
+);
 
 CREATE TABLE Prateleira(
     lado VARCHAR(5) NOT NULL,
