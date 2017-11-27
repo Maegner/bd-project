@@ -62,9 +62,9 @@ CREATE TABLE Prateleira(
 );
 
 CREATE TABLE Planograma(
-    face VARCHAR(5),
-    unidades INT,
-    localizacao VARCHAR(10),
+    face VARCHAR(5) NOT NULL,
+    unidades INT DEFAULT 0,
+    localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
     lado VARCHAR(5) NOT NULL,
@@ -72,11 +72,12 @@ CREATE TABLE Planograma(
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
+    CHECK(unidades >= 0)
 );
 
 CREATE TABLE EventoReposicao(
     operador VARCHAR(25) NOT NULL,
-    instante TIMESTAMP NOT NULL,
+    instante TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(operador,instante)   
 );
 
