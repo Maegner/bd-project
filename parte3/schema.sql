@@ -4,14 +4,12 @@ CREATE TABLE Categoria(
 );
 
 CREATE TABLE Categoria_Simples(
-    nome VARCHAR(50) NOT NULL,
-    unique(nome),
+    nome VARCHAR(50) NOT NULL UNIQUE,
     FOREIGN KEY (nome) REFERENCES Categoria
 );
 
 CREATE TABLE Super_Categoria(
-    nome VARCHAR(50) NOT NULL,
-    unique(nome),
+    nome VARCHAR(50) NOT NULL UNIQUE,
     FOREIGN KEY (nome) REFERENCES Categoria
 );
 
@@ -77,12 +75,12 @@ CREATE TABLE Planograma(
 
 CREATE TABLE EventoReposicao(
     operador VARCHAR(25) NOT NULL,
-    instante TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    instante TIMESTAMP NOT NULL,
     PRIMARY KEY(operador,instante)   
 );
 
 CREATE TABLE Reposicao(
-    unidades INT,
+    unidades INT DEFAULT 0,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
     lado VARCHAR(5) NOT NULL,
@@ -92,8 +90,9 @@ CREATE TABLE Reposicao(
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
-    FOREIGN KEY(operador,instante) REFERENCES EventoReposicao
+    FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,
+    CHECK(unidades >= 0)
 );
 
 ALTER TABLE EventoReposicao
-   ADD CONSTRAINT RI_EA3 CHECK(instante <= NOW());
+   ADD CONSTRAINT RI_EA3 CHECK(instante <= CURRENT_TIMESTAMP);
