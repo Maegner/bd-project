@@ -1,3 +1,17 @@
+drop table Categoria cascade;
+drop table Categoria_Simples cascade;
+drop table Super_Categoria cascade;
+drop table Constituida cascade;
+drop table Fornecedor cascade;
+drop table Produto cascade;
+drop table Fornecedor_secundario cascade;
+drop table Corredor cascade;
+drop table Prateleira cascade;
+drop table Planograma cascade;
+drop table EventoReposicao cascade;
+drop table Reposicao cascade;
+
+
 CREATE TABLE Categoria(
     nome VARCHAR(50) NOT NULL,
     PRIMARY KEY(nome)
@@ -47,13 +61,15 @@ CREATE TABLE Fornecedor_secundario(
 
 CREATE TABLE Corredor(
     nro INT NOT NULL,
-    largura INT,
-    PRIMARY KEY(nro)
+    largura FLOAT(6) NOT NULL,
+    PRIMARY KEY(nro),
+    check(largura >= 0),
+    check(nro >= 0)
 );
 
 CREATE TABLE Prateleira(
     lado VARCHAR(5) NOT NULL,
-    altura VARCHAR(5) NOT NULL,
+    altura FLOAT(6) NOT NULL,
     nro INT NOT NULL,
     PRIMARY KEY(lado,altura),
     FOREIGN KEY(nro) REFERENCES Corredor
@@ -65,12 +81,13 @@ CREATE TABLE Planograma(
     localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
-    lado VARCHAR(5) NOT NULL,
-    altura VARCHAR(5) NOT NULL,
+    lado VARCHAR(8) NOT NULL,
+    altura FLOAT(6) NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
-    CHECK(unidades >= 0)
+    CHECK(unidades >= 0),
+    CHECK(altura >= 0)
 );
 
 CREATE TABLE EventoReposicao(
@@ -83,8 +100,8 @@ CREATE TABLE Reposicao(
     unidades INT DEFAULT 0,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
-    lado VARCHAR(5) NOT NULL,
-    altura VARCHAR(5) NOT NULL,
+    lado VARCHAR(8) NOT NULL,
+    altura FLOAT(6) NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
