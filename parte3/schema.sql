@@ -61,7 +61,7 @@ CREATE TABLE Fornecedor_secundario(
 
 CREATE TABLE Corredor(
     nro INT NOT NULL,
-    largura FLOAT(6) NOT NULL,
+    largura INT NOT NULL,
     PRIMARY KEY(nro),
     check(largura >= 0),
     check(nro >= 0)
@@ -69,10 +69,11 @@ CREATE TABLE Corredor(
 
 CREATE TABLE Prateleira(
     lado VARCHAR(5) NOT NULL,
-    altura FLOAT(6) NOT NULL,
+    altura INT NOT NULL,
     nro INT NOT NULL,
     PRIMARY KEY(lado,altura),
-    FOREIGN KEY(nro) REFERENCES Corredor
+    FOREIGN KEY(nro) REFERENCES Corredor,
+    CHECK(altura >= 0)
 );
 
 CREATE TABLE Planograma(
@@ -82,12 +83,11 @@ CREATE TABLE Planograma(
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
     lado VARCHAR(8) NOT NULL,
-    altura FLOAT(6) NOT NULL,
+    altura INT NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
-    CHECK(unidades >= 0),
-    CHECK(altura >= 0)
+    CHECK(unidades >= 0)
 );
 
 CREATE TABLE EventoReposicao(
@@ -101,7 +101,7 @@ CREATE TABLE Reposicao(
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
     lado VARCHAR(8) NOT NULL,
-    altura FLOAT(6) NOT NULL,
+    altura INT NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,

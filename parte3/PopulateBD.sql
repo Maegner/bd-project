@@ -42,3 +42,13 @@ insert into Fornecedor_Secundario values('000000002','EAN00004');
 insert into Fornecedor_Secundario values('000000002','EAN00003');
 insert into Fornecedor_Secundario values('000000002','EAN00002');
 insert into Fornecedor_Secundario values('000000002','EAN00001');
+
+insert into Corredor values('')
+
+insert into EventoReposicao values('joao','2006-10-27 23:00:00');
+insert into EventoReposicao values('silva','2005-01-27 23:00:00');
+insert into EventoReposicao values('carlos','2002-01-30 23:00:00');
+insert into EventoReposicao values('manuel','2001-09-24 23:00:00');
+insert into EventoReposicao values('dias','2011-11-21 23:00:00');
+
+insert into Reposicao values(10,1,'EAN00001','sds','dias','2001-10-27 23:00:00');
