@@ -10,4 +10,4 @@ SELECT ean from Produto where ean in
 
 e)
 
-SELECT ean from Reposicao group by ean having count(distinct operador) = count(operador);
+SELECT ean from Reposicao group by ean having count(distinct operador) = 1;
