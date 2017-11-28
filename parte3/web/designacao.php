@@ -13,15 +13,10 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $db->query("Inserir categoria;");
-
-        //REVER SYNTAX!!
         $sql = "UPDATE Produto
-                SET designacao = '$designacao'
+                SET design = '$designacao'
                 WHERE ean = '$ean';"
         ;
-
-        echo("<p>$sql</p>");
 
         $db->query($sql);
 
