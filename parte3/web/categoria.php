@@ -13,9 +13,6 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $db->query("Inserir categoria;");
-
-        //REVER SYNTAX!!
         if ($remover != "on") {
             $sql = "INSERT INTO Categoria(nome)
                     VALUES ('$nomeCategoria');"
@@ -26,8 +23,6 @@
                     WHERE nome = '$nomeCategoria';"
             ;
         }
-
-        echo("<p>$sql</p>");
 
         $db->query($sql);
 
