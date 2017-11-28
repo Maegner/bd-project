@@ -1,6 +1,19 @@
 <html>
     <body>
 <?php
+    function fetchSubCategory($superCategory) {
+        $sql = "SELECT *
+                FROM Constituida
+                WHERE super_categoria = '$superCategory'"
+                ;
+        $result = $db->query($sql);
+
+        foreach($result as $row) {
+            $categoryList->push($row['categoria']);
+            fetchSubCategory($row['categoria']);
+        }
+    }
+
     $superCat = $_REQUEST['SuperCategoria'];
 
     try
@@ -12,15 +25,17 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $db->query("Inserir categoria;");
+        $categoryList = new SplDoublyLinkedList();
+        fetchSubCategory($superCat);
 
-        //REVER SYNTAX!!
-        $sql = "DUNNO"
-                ;
-
-        echo("<p>$sql</p>");
-
-        $db->query($sql);
+        echo("<table border=\"0\" cellspacing=\"5\">\n");
+        for($categoryList->rewind();$categoryList->valid();$categoryList->next())
+        {
+            echo("<tr>\n");
+            echo("<td>{$dlist->current()}</td>\n");
+            echo("</tr>\n");
+        }
+        echo("</table>\n");
 
         $db->query("commit;");
 

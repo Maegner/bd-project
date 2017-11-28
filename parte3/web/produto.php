@@ -18,12 +18,9 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $db->query("Inserir categoria;");
-
-        //REVER SYNTAX!!
         if ($remover != "on") {
-            $sql = "INSERT INTO Produto(ean, design, categoria, forn_primario, data)
-                    VALUES ($ean, $designacao, $categoria, $primario, $data);"
+            $sql = "INSERT INTO Produto(ean, categoria, forn_primario, design, data)
+                    VALUES ($ean, $categoria, $primario, $designacao, $data);"
             ;
         }// Tem de fazer input de um fornecedor secundario tbem RI-RE3​: Todo o EAN​ de produto​ tem de existir na relação fornece_sec
         else {
@@ -31,8 +28,6 @@
                     WHERE ean = $ean;"
             ;
         }
-
-        echo("<p>$sql</p>");
 
         $db->query($sql);
 
