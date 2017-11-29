@@ -26,22 +26,32 @@
     <script>
         function updateSec() {
             var table = document.getElementById("TabelaProduto");
-            var row = document.getElementById("PrimeiroSecundario");
+            var nifRow = document.getElementById("PrimeiroNIFSecundario");
+            var nameRow = document.getElementById("PrimeiroNOMESecundario");
             var numberOfSecs = document.getElementById("secondaryNumber").value;
             var limite = document.getElementById("FornecedorLimit");
 
-            var firstRow = table.rows[6];
+            var firstRow = table.rows[8];
             while (firstRow.className == "FornecedorSec") {
-                table.deleteRow(6);
-                firstRow = table.rows[6];
+                table.deleteRow(8);
+                table.deleteRow(8);
+                firstRow = table.rows[8];
             }
 
             for (var i = 0; i < numberOfSecs-1; ++i) {
-                var newRow = row.cloneNode(true);
-                newRow.children[1].children[0].name = "FornecedorSecundario".concat((i+2).toString());
-                newRow.children[0].innerHTML = "Fornecedor Secundario ".concat((i+2).toString(), ":");
-                var index = 6 + i;
+                var newRow = nifRow.cloneNode(true);
+                newRow.children[1].children[0].name = "FornecedorSecundarioNIF".concat((i+2).toString());
+                newRow.children[0].innerHTML = "NIF Fornecedor Secundario ".concat((i+2).toString(), ":");
+                var index = 8 + i*2;
                 table.children[0].insertBefore(newRow, table.children[0].children[index]);
+
+                var newRow = nameRow.cloneNode(true);
+                newRow.children[1].children[0].name = "FornecedorSecundarioNAME".concat((i+2).toString());
+                newRow.children[0].innerHTML = "Nome Fornecedor Secundario ".concat((i+2).toString(), ":");
+                var index = 9 + i*2;
+                table.children[0].insertBefore(newRow, table.children[0].children[index]);
+                
+                console.log(newRow.children[1].children[0].name);
             }
         }
     </script>
@@ -88,16 +98,24 @@
                             <td class="inputColumn"><input type="text" name="Categoria"/></td> 
                         </tr>
                         <tr>
-                            <td>Fornecedor Primário: </td>
-                            <td class="inputColumn"><input type="text" name="FornecedorPrimario"/></td> 
+                            <td>NIF Fornecedor Primário: </td>
+                            <td class="inputColumn"><input type="text" name="FornecedorPrimarioNIF"/></td> 
+                        </tr>
+                        <tr>
+                            <td>Nome Fornecedor Primário: </td>
+                            <td class="inputColumn"><input type="text" name="FornecedorPrimarioNOME"/></td> 
                         </tr>
                         <tr>
                             <td>Fornecedores Secundários: </td>
                             <td class="inputColumn"><input type="number" name="FornecedoresSecundarios" min="1" onchange="updateSec()" id="secondaryNumber"></td> 
                         </tr>
-                        <tr id="PrimeiroSecundario" class="FornecedorSec">
-                            <td>Fornecedor Secundário 1: </td>
-                            <td class="inputColumn"><input type="text" name="FornecedorSecundario1"/></td> 
+                        <tr id="PrimeiroNIFSecundario" class="FornecedorSec">
+                            <td>NIF Fornecedor Secundário 1: </td>
+                            <td class="inputColumn"><input type="text" name="FornecedorSecundarioNIF1"/></td> 
+                        </tr>
+                        <tr id="PrimeiroNOMESecundario" class="FornecedorSec">
+                            <td>Nome Fornecedor Secundário 1: </td>
+                            <td class="inputColumn"><input type="text" name="FornecedorSecundarioNOME1"/></td> 
                         </tr>
                         <tr>
                             <td>Data: </td>
