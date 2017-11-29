@@ -9,121 +9,138 @@
         list($year, $month, $day) = explode('-', $date); 
         return checkdate($month, $day, $year);
     }
-    
-    function postSecondarySuppliers($supliers,$ean,$database){
-        $sups = explode(";",$supliers);
+
+    function doesSupplierExist($supplierNif,$database){
+        $sql = "SELECT * FROM Fornecedor WHERE nif = '$supplierNif';";
+        $result = $database->query($sql);
+
+        if(($result->rowCount()==0)){
+            return false;
+        }
+        return true;
+    }
+
+    function doQuery($query,$database){
+        try{
+            $database->query($query);
+        }
+
+        catch(PDOException $e){
+            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+        }
+    }
+    //TODO: Verificar quando os secondary supplier vem vazio
+    function postSecondarySuppliers($supliers,$supliersName,$ean,$database){
+        $sups = $supliers;
+        $noms = $supliersName;
+        $position = 0;
+
+        if(count($sups) != count($noms) or count($sups) == 0 ){
+            echo("<p>ERROR: Insert the correct number of names and nifs</p>");
+        }
 
         foreach($sups as $suplier){
 
-            echo("<p>{$suplier}</p>");
+            if(!doesSupplierExist($suplier,$database)){
+                
+                $request = "INSERT INTO Fornecedor VALUES('$suplier','$noms[$position]');";
+                doQuery($request,$database);
+            }
 
             $request = "INSERT INTO Fornecedor_secundario VALUES('$suplier','$ean');";
 
-            try{
-                $database->query($request);
-            }
+            doQuery($request,$database);
 
-            catch(Exception $e){
-                echo("<p>ERROR: {$e->getMessage()}</p>");
-            }
+            $position = $position + 1;
 
         }
     }
 
-    function postProduct($ean,$designacao,$categoria,$primario,$secundarios,$data,$database){
-        $sql = "INSERT INTO Produto VALUES('$ean', '$categoria', '$primario', '$designacao', '$data');";
+    function postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$database){
         
-        try{
-            $database->query($sql);
-        }
+        postPrimarySupplier($primarioNif,$primarioNome,$database);
+        $sql = "INSERT INTO Produto VALUES('$ean', '$categoria', '$primarioNif', '$designacao', '$data');";
+        doQuery($sql,$database);
+        postSecondarySuppliers($secundarySuppliersNif,$secundarySuppliersName,$ean,$database);
 
-        catch(Exception $e){
-            echo("<p>ERROR: {$e->getMessage()}</p>");
-        }
-        echo("<p>{$secundarios}</p>");
-        postSecondarySuppliers($secundarios,$ean,$database);
     }
 
-    function postPrimarySupplier($primario,$database){
-        $sql = "SELECT * FROM Fornecedor WHERE nif = '$primario';"
-        $result = $database->query($sql);
-
-        if(!$result){
-            $sql = "INSERT INTO Fornecedor "
+    function postPrimarySupplier($primarioNif,$primarioNome,$database){
+        if(! doesSupplierExist($primarioNif,$database)){
+            $request = "INSERT INTO Fornecedor VALUES('$primarioNif','$primarioNome');";
+            doQuery($request,$database);
         }
     }
-
 
     $ean = $_REQUEST['EAN'];
     $designacao = $_REQUEST['Designacao'];
     $categoria = $_REQUEST['Categoria'];
-    $primario = $_REQUEST['FornecedorPrimario'];
-    $secundarios = $_REQUEST['Fornecedores Secundarios separados por ;'];
+    $primarioNif = $_REQUEST['FornecedorPrimarioNif'];
+    $primarioNome = $_REQUEST['FornecedorPrimarioNome'];
+    $secundarios = $_REQUEST['FornecedoresSecundarios'];
+ 
     $data = $_REQUEST['DataProduto'];
     $remover = $_REQUEST['RemoverProduto'];
 
-    if(!isRealDate($data)){
-        echo("<p>ERROR: date inserted is not valid please insert in format YYYY-MM-DD</p>");
-    }
+    echo("<script> console.log({$primarioNif})</script>");
 
-    $fornecedores_sec = array();
+    $secundarySuppliersNif = array();
     $int = intval($secundarios);
-    for($i = 0; $i < $int; ++$i) {
-        $index = $i + 1;
-        $string = 'FornecedorSecundario'.$index;
-        echo("<script>console.log($string)</script>");
-        array_push($fornecedores_sec, $string);
-    }
-
-    try
-    {
-        $host = "db.ist.utl.pt";
-        $user ="istxxxxx";
-        $password = "xxxxxxx";
-        $dbname = $user;
-        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        if ($remover != "on") {
-            $sql = "INSERT INTO Produto(ean, categoria, forn_primario, design, data)
-                    VALUES ($ean, $categoria, $primario, $designacao, $data);"
-            ;
-        }// Tem de fazer input de um fornecedor secundario tbem RI-RE3​: Todo o EAN​ de produto​ tem de existir na relação fornece_sec
-        else {
-            $sql = "DELETE FROM Produto
-                    WHERE ean = $ean;"
-            ;
-        }
-
-        $db->query($sql);
-        $db->query("commit;");
-        $db = null;
-    
-    else{
-        try
-        {
-            $host = "db.ist.utl.pt";
-            $user ="ist426018";
-            $password = "pmke4417";
-            $dbname = $user;
-            $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    
-                if ($remover != "on") {
-                    postProduct($ean,$designacao,$categoria,$primario,$secundarios,$data,$db);
-                }// Tem de fazer input de um fornecedor secundario tbem RI-RE3​: Todo o EAN​ de produto​ tem de existir na relação fornece_sec
-                else {
-                    $sql = "DELETE FROM Produto
-                            WHERE ean = $ean;";
-                }
-            $db = null;
-        }
-        catch (Exception $e)
-        {
-            echo("<p>ERROR: {$e->getMessage()}</p>");
+    for($i = 1; $i <= $int; ++$i) {
+        $index = $i;
+        $string = 'FornecedorSecundarioNif'.$index;
+        $value = $_REQUEST[$string];
+        if($value != primarioNif && $value != ""){
+            array_push($secundarySuppliersNif,$value);   
         }
     }
+    
+        $i = 1;
+        $secundarySuppliersName = array();
+        $int = intval($secundarios);
+        for($i = 1; $i <= $int; ++$i) {
+            $index = $i;
+            $string = 'FornecedorSecundarioNome'.$index;
+            $value = $_REQUEST[$string];
+            if($value != ""){
+                array_push($secundarySuppliersName, $value);
+            }
+        }
+        
+    
+    
+        if(!isRealDate($data)){
+            echo("<p>ERROR: date inserted is not valid please insert in format YYYY-MM-DD</p>");
+        }
+    
+        else{
+            try
+            {
+                $host = "db.ist.utl.pt";
+                $user ="ist426018";
+                $password = "egmk9483";
+                $dbname = $user;
+                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        
+                    if ($remover != "on") {
+                        postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
+                    }
+                    else {
+                        $sql = "DELETE FROM Produto
+                                WHERE ean = $ean;";
+                    }
+                $db = null;
+                echo("<p>Insercao foi um sucesso</p>");
+            }
+            catch (Exception $e)
+            {
+                echo("<p>ERROR GeneralArea: {$e->getMessage()}</p>");
+            }
+        }
+    
+    
 
     
 ?>
