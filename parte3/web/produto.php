@@ -45,30 +45,27 @@
     }
 
     function postPrimarySupplier($primario,$database){
-        $sql = "SELECT * FROM Fornecedor WHERE nif = '$primario';"
+        $sql = "SELECT * FROM Fornecedor WHERE nif = '$primario';";
         $result = $database->query($sql);
 
-        if(!$result){
-            $sql = "INSERT INTO Fornecedor "
+        if(!$result) {
+            $sql = "INSERT INTO Fornecedor ";
         }
     }
-
 
     $ean = $_REQUEST['EAN'];
     $designacao = $_REQUEST['Designacao'];
     $categoria = $_REQUEST['Categoria'];
     $primario = $_REQUEST['FornecedorPrimario'];
-    $secundarios = $_REQUEST['Fornecedores Secundarios separados por ;'];
+    $secundarios = $_REQUEST['FornecedoresSecundarios'];
     $data = $_REQUEST['DataProduto'];
-    $remover = $_REQUEST['RemoverProduto'];
-
+    $remover = (isset($_REQUEST['RemoverProduto']) ? $_REQUEST['RemoverProduto'] : null);
     
     $fornecedores_sec = array();
     $int = intval($secundarios);
     for($i = 0; $i < $int; ++$i) {
         $index = $i + 1;
         $string = 'FornecedorSecundario'.$index;
-        echo("<script>console.log($string)</script>");
         array_push($fornecedores_sec, $string);
     }
     
