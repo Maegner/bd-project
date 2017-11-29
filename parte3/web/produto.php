@@ -9,6 +9,15 @@
     $data = $_REQUEST['DataProduto'];
     $remover = $_REQUEST['RemoverProduto'];
 
+    $fornecedores_sec = array();
+    $int = intval($secundarios);
+    for($i = 0; $i < $int; ++$i) {
+        $index = $i + 1;
+        $string = 'FornecedorSecundario'.$index;
+        echo("<script>console.log($string)</script>");
+        array_push($fornecedores_sec, $string);
+    }
+
     try
     {
         $host = "db.ist.utl.pt";
