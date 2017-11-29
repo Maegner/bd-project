@@ -32,7 +32,7 @@ CREATE TABLE Constituida(
     categoria VARCHAR(50) NOT NULL,
     PRIMARY KEY(super_categoria,categoria),
     FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome),
-    FOREIGN KEY (categoria) REFERENCES Categoria_Simples(nome)
+    FOREIGN KEY (categoria) REFERENCES Categoria(nome)
 );
 
 CREATE TABLE Fornecedor(

@@ -51,4 +51,4 @@ insert into EventoReposicao values('carlos','2002-01-30 23:00:00');
 insert into EventoReposicao values('manuel','2001-09-24 23:00:00');
 insert into EventoReposicao values('dias','2011-11-21 23:00:00');
 
-insert into Reposicao values(10,1,'EAN00001','sds','dias','2001-10-27 23:00:00');
+insert into Reposicao values(10,1,'EAN00001','sds',1,'Operador','2001-10-27 23:00:00');
