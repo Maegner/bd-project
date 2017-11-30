@@ -68,7 +68,7 @@ CREATE TABLE Corredor(
 );
 
 CREATE TABLE Prateleira(
-    lado VARCHAR(5) NOT NULL,
+    lado VARCHAR(8) NOT NULL,
     altura INT NOT NULL,
     nro INT NOT NULL,
     PRIMARY KEY(lado,altura),
@@ -78,7 +78,7 @@ CREATE TABLE Prateleira(
 
 CREATE TABLE Planograma(
     face VARCHAR(5) NOT NULL,
-    unidades INT DEFAULT 0,
+    unidades INT NOT NULL
     localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
@@ -97,11 +97,11 @@ CREATE TABLE EventoReposicao(
 );
 
 CREATE TABLE Reposicao(
-    unidades INT DEFAULT 0,
-    nro INT NOT NULL,
+    unidades INT NOT NULL,
     ean VARCHAR(25) NOT NULL,
-    lado VARCHAR(8) NOT NULL,
+    nro INT NOT NULL,
     altura INT NOT NULL,
+    lado VARCHAR(8) NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
