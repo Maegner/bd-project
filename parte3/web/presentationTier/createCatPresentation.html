@@ -6,15 +6,17 @@
         </head>
 
         <script>
-            //Por agora vao ambas para o mesmo sitio mas tem de se alterar
                 function changeToCreateCat(){
                     window.location.href = "./createSimpleCat.html";
+                }
+                function changeToCreateSuperCat(){
+                    window.location.href = "./createSuperCat.html";
                 }
         </script>
         
         <body>
             <div id = "container">
-                <button id ="createCat" class = "mainMenuButtons left" onclick="changeToCreateCat()"> Criar Super-Categoria </button>
+                <button id ="createCat" class = "mainMenuButtons left" onclick="changeToCreateSuperCat()"> Criar Super-Categoria </button>
                 <button id ="createCat" class = "mainMenuButtons right" onclick="changeToCreateCat()"> Criar Categoria Simples </button>
             </div>    
         </body>

@@ -85,12 +85,12 @@
     echo("<script> console.log({$primarioNif})</script>");
 
     $secundarySuppliersNif = array();
-    $int = intval($secundarios);
+    $int = intval($secundarios); 
     for($i = 1; $i <= $int; ++$i) {
         $index = $i;
         $string = 'FornecedorSecundarioNif'.$index;
         $value = $_REQUEST[$string];
-        if($value != primarioNif && $value != ""){
+        if($value != $primarioNif && $value != ""){
             array_push($secundarySuppliersNif,$value);   
         }
     }

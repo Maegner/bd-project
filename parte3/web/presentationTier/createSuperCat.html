@@ -15,7 +15,7 @@
                 }
             }
 
-            for (var i = 0; i < numberOfSubs-1; ++i) {
+            for (var i = 0; i < numberOfSubs-1; ++i) { 
                 var newRow = catRow.cloneNode(true);
                 newRow.children[1].children[0].name = "SubCategoria".concat((i+2).toString());
                 newRow.children[0].innerHTML = "Sub-Categoria ".concat((i+2).toString(), ":");
@@ -55,7 +55,7 @@
             <div id = "Query1" class = "Query" style="float:left">
                     <h3>Adicionar ou remover categoria</h3>
 
-                    <form action="../applicationTier/categoria.php" method="post">
+                    <form action="../applicationTier/superCategoria.php" method="post">
                         <table id="TabelaCategoria" style="text-align: right; width: 350px;">
                             <tr>
                                 <td>Super categoria: </td>
