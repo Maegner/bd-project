@@ -1,0 +1,4 @@
+Mudar o enconding ou deixar de usar acentos;
+Verificacoes na inserção de dados, se inserir Strings onde nao devo, deve ser verificado no php;
+Listar sub-categorias não funciona;
+Dar respostas quando o resultado vem vazio;

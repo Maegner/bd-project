@@ -1,0 +1,27 @@
+<html>
+        <head>
+            <meta charset="utf-8">
+            <title> Projeto de BD </title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+
+        <body>
+            <div id = "Query4" class = "Query" style="float:left">
+                <h3> Alterar designação de um produto </h3>
+
+                <form action="../applicationTier/designacao.php" method="post">
+                    <table style="text-align: right;">
+                        <tr>
+                            <td>EAN: </td>
+                            <td class="inputColumn"><input type="text" name="EAN_Reposicao"/></td> 
+                        </tr>
+                        <tr>
+                            <td>Designação: </td>
+                            <td class="inputColumn"><input type="text" name="NovaDesignacao"/></td> 
+                        </tr>
+                    </table>
+                    <p> <input type="submit" value="Submit"/> </p>
+                </form>
+            </div> 
+        </body>
+</html>

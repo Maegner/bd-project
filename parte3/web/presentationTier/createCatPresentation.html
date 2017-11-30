@@ -1,0 +1,21 @@
+<html>
+        <head>
+            <meta charset="utf-8">
+            <title> Projeto de BD </title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+
+        <script>
+            //Por agora vao ambas para o mesmo sitio mas tem de se alterar
+                function changeToCreateCat(){
+                    window.location.href = "./createSimpleCat.html";
+                }
+        </script>
+        
+        <body>
+            <div id = "container">
+                <button id ="createCat" class = "mainMenuButtons left" onclick="changeToCreateCat()"> Criar Super-Categoria </button>
+                <button id ="createCat" class = "mainMenuButtons right" onclick="changeToCreateCat()"> Criar Categoria Simples </button>
+            </div>    
+        </body>
+</html>
