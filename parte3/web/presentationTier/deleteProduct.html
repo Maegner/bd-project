@@ -39,46 +39,15 @@
 
     <body>
         <div id = "Query2" class = "Query" style="float:left">
-            <h3>Adicionar ou remover produto</h3>
+            <h3>Remover produto</h3>
 
-            <form action="../applicationTier/produto.php" method="post">
+            <form action="../applicationTier/deleteProd.php" method="post">
                 <table id="TabelaProduto" style="text-align: right;">
                     <tr>
                         <td>EAN: </td>
                         <td class="inputColumn"><input type="text" name="EAN"/></td> 
                     </tr>
-                    <tr>
-                        <td>Designação: </td>
-                        <td class="inputColumn"><input type="text" name="Designacao"/></td> 
-                    </tr>
-                    <tr>
-                        <td>Categoria: </td>
-                        <td class="inputColumn"><input type="text" name="Categoria"/></td> 
-                    </tr>
-                    <tr>
-                        <td>NIF Fornecedor Primário: </td>
-                        <td class="inputColumn"><input type="text" name="FornecedorPrimarioNif"/></td> 
-                    </tr>
-                    <tr>
-                        <td>Nome Fornecedor Primário: </td>
-                        <td class="inputColumn"><input type="text" name="FornecedorPrimarioNome"/></td> 
-                    </tr>
-                    <tr>
-                        <td>Fornecedores Secundários: </td>
-                        <td class="inputColumn"><input type="number" name="FornecedoresSecundarios" min="1" onchange="updateSec()" id="secondaryNumber"></td> 
-                    </tr>
-                    <tr id="PrimeiroNIFSecundario" class="FornecedorSec">
-                        <td>NIF Fornecedor Secundário 1: </td>
-                        <td class="inputColumn"><input type="text" name="FornecedorSecundarioNif1"/></td> 
-                    </tr>
-                    <tr id="PrimeiroNOMESecundario" class="FornecedorSec">
-                        <td>Nome Fornecedor Secundário 1: </td>
-                        <td class="inputColumn"><input type="text" name="FornecedorSecundarioNome1"/></td> 
-                    </tr>
-                    <tr>
-                        <td>Data: </td>
-                        <td class="inputColumn"><input type="text" name="DataProduto"/></td> 
-                    </tr>
+                    
                 </table>
                 <p> <input type="submit" value="Submit"/> </p>
             </form>

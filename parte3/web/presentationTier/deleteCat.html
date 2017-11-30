@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Projeto de BD </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <!--Provavelmente separar o criar do remover era boa ideia-->
+        <!--Adicionar e remover categorias-->
+        <div id = "Query1" class = "Query" style="float:left">
+                <h3>Remover categoria</h3>
+
+                <form action="../applicationTier/deleteCat.php" method="post">
+                    <table style="text-align: right;">
+                        <tr>
+                            <td>Nome da Categoria: </td>
+                            <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
+                        </tr>
+                    </table>
+                    <p> <input type="submit" value="Submit"/> </p>
+                </form>
+            </div>
+
+    </body>
+</html>

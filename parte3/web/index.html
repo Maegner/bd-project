@@ -21,14 +21,21 @@
         function changeToChangeProd(){
             window.location.href = "./presentationTier/changeProdPresentation.html";
         }
+        function changeToDeleteCat(){
+            window.location.href = "./presentationTier/deleteCat.html";
+        }
+        function changeToDeleteProd(){
+            window.location.href = "./presentationTier/deleteProduct.html";
+        }
     </script>
     <div id = "container">
+        
         <button id ="createProd" class = "mainMenuButtons left" onclick="changeToCreateProd()" > Criar Produto </button>
-        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToCreateProd()" > Remover Produto </button>
+        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToDeleteProd()" > Remover Produto </button>
         <button id ="changeProd" class = "mainMenuButtons right"onclick="changeToChangeProd()" > Alterar designação </button>
 
         <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" > Criar Categoria </button>
-        <button id ="createCat" class = "mainMenuButtons center " onclick="changeToCreateCat()" > Remover Categoria </button>
+        <button id ="createCat" class = "mainMenuButtons center " onclick="changeToDeleteCat()" > Remover Categoria </button>
         <button id ="listSubCat" class = "mainMenuButtons right"onclick="changeTolistSubCat()" > Listar Sub-Categorias </button>
 
         <button id ="listRep" class = "mainMenuButtons center" onclick="changeTolistRep()" > Listar Reposições </button>
