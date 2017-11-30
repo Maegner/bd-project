@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Projeto de BD </title>
+        <link rel="stylesheet" href="./presentationTier/style.css">
+    </head>
+    <script>
+        function changeToCreateProd(){
+            window.location.href = "./presentationTier/createProductPresentation.html";
+        }
+        function changeToCreateCat(){
+            window.location.href = "./presentationTier/createCatPresentation.html";
+        }
+        function changeTolistRep(){
+            window.location.href = "./presentationTier/listRepPresentation.html";
+        }
+        function changeTolistSubCat(){
+            window.location.href = "./presentationTier/listSubCatPresentation.html";
+        }
+        function changeToChangeProd(){
+            window.location.href = "./presentationTier/changeProdPresentation.html";
+        }
+    </script>
+    <div id = "container">
+        <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" > Criar Categoria </button>
+        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToCreateProd()" > Criar Produto </button>
+        <button id ="listRep" class = "mainMenuButtons right" onclick="changeTolistRep()" > Listar Reposições </button>
+        <button id ="listSubCat" class = "mainMenuButtons left"onclick="changeTolistSubCat()" > Listar Sub-Categorias </button>
+        <button id ="changeProd" class = "mainMenuButtons right"onclick="changeToChangeProd()" > Alterar designação </button>
+    </div>
+
+</html>

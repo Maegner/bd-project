@@ -1,8 +1,8 @@
 <html>
     <body>
 <?php
-    $nomeCategoria = $_REQUEST['NomeCategoria'];
-    $remover = $_REQUEST['RemoverCategoria'];
+    $ean = $_REQUEST['EAN'];
+    $designacao = $_REQUEST['NovaDesignacao'];
 
     try
     {
@@ -13,26 +13,22 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if ($remover != "on") {
-            $sql = "INSERT INTO Categoria(nome)
-                    VALUES ('$nomeCategoria');"
-                    ;
-        }
-        else {
-            $sql = "DELETE FROM Categoria
-                    WHERE nome = '$nomeCategoria';"
-            ;
-        }
+        $db->query("START TRANSACTION;");
+
+        $sql = "UPDATE Produto
+                SET design = '$designacao'
+                WHERE ean = '$ean';"
+        ;
 
         $db->query($sql);
 
-        $db->query("commit;");
+        $db->query("COMMIT;");
 
         $db = null;
     }
     catch (PDOException $e)
     {
-        $db->query("rollback;");
+        $db->query("ROLLBACK;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
 ?>
