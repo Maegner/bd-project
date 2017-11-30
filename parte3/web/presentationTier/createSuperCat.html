@@ -1,0 +1,82 @@
+<html>
+    <script>
+        function updateCat() {
+            var table = document.getElementById("TabelaCategoria");
+            var catRow = document.getElementById("PrimeiraSub");
+            var numberOfSubs = document.getElementById("subNumber").value;
+            var bRemove = document.getElementById("remove");
+            
+            if (table.rows.length > 4) {
+                var firstRow = table.rows[4];
+                while (firstRow.className == "SubCat") {
+                    table.deleteRow(4);
+                    if (table.rows.length < 5) break;
+                    firstRow = table.rows[4];
+                }
+            }
+
+            for (var i = 0; i < numberOfSubs-1; ++i) {
+                var newRow = catRow.cloneNode(true);
+                newRow.children[1].children[0].name = "SubCategoria".concat((i+2).toString());
+                newRow.children[0].innerHTML = "Sub-Categoria ".concat((i+2).toString(), ":");
+                var index = 4 + i;
+                table.children[0].insertBefore(newRow, table.children[0].children[index]);
+            }
+        }
+
+        function updateRemove() {
+            var bRemove = document.getElementById("remove").checked;
+            var table = document.getElementById("TabelaCategoria");
+            if (table.rows.length > 4) {
+                table.rows[2].style.display = bRemove ? 'none' : 'table-row';
+                table.rows[3].style.display = bRemove ? 'none' : 'table-row';
+                var index = 4;
+                var i = 0;
+                var firstRow = table.rows[index];
+                while (firstRow.className == "SubCat") {
+                    firstRow.style.display = bRemove ? 'none' : 'table-row';
+                    i++
+                    if (table.rows.length < (index+i+1)) break;
+                    firstRow = table.rows[index+i];
+                }
+            }
+        }
+    </script>
+
+        <head>
+            <meta charset="utf-8">
+            <title> Projeto de BD </title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        
+        <body>
+            <!--Provavelmente separar o criar do remover era boa ideia-->
+            <!--Adicionar e remover categorias-->
+            <div id = "Query1" class = "Query" style="float:left">
+                    <h3>Adicionar ou remover categoria</h3>
+
+                    <form action="../applicationTier/categoria.php" method="post">
+                        <table id="TabelaCategoria" style="text-align: right; width: 350px;">
+                            <tr>
+                                <td>Super categoria: </td>
+                                <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
+                            </tr>
+                            <tr>
+                                <td>Remover: </td>
+                                <td class="inputColumn"><input type="checkbox" name="RemoverCategoria" onchange="updateRemove()" id="remove"/></td> 
+                            </tr>
+                            <tr>
+                                <td>Número de sub-categorias: </td>
+                                <td class="inputColumn"><input type="number" name="SubCategorias" min="1" onchange="updateCat()" id="subNumber"></td>   
+                            </tr>
+                            <tr id="PrimeiraSub" class="SubCat">
+                                <td>Sub-Categoria 1:</td>
+                                <td class="inputColumn"><input type="text" name="SubCategoria1" /></td> 
+                            </tr>
+                        </table>
+                        <p> <input type="submit" value="Submit"/> </p>
+                    </form>
+                </div>
+  
+        </body>
+    </html>
