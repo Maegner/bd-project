@@ -1,0 +1,13 @@
+00:31:44.743 [Thread-0] DEBUG openstacklib.Abstrato - [abstractExists - projectExists] init
+00:31:45.029 [Thread-0] DEBUG openstacklib.Abstrato - [abstractExists - projectExists] project p-wordpress exists
+00:31:45.036 [Thread-0] DEBUG openstacklib.Abstrato - [getIDs - getFloatingIPS] init
+00:31:45.037 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] init
+00:31:45.277 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] project p-wordpress exists with id 5cc91e545a524f37b71ce88dffcbb401
+00:31:46.077 [Thread-0] WARN  openstacklib.Abstrato - [getIDs - getFloatingIPS] project p-wordpress does not have any floatingips
+00:31:46.081 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] init
+00:31:46.333 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] project p-wordpress exists with id 5cc91e545a524f37b71ce88dffcbb401
+00:31:47.090 [Thread-0] DEBUG openstacklib.FloatingIp - [addFloatingIp] init
+00:31:47.092 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] init
+00:31:47.347 [Thread-0] DEBUG openstacklib.Abstrato - [getID - getProjectID] project p-wordpress exists with id 5cc91e545a524f37b71ce88dffcbb401
+00:31:47.347 [Thread-0] DEBUG openstacklib.FloatingIp - [getSubnetFloatingIpSubnet] init
+00:31:51.006 [Thread-0] DEBUG openstacklib.FloatingIp - [addFloatingIp] Floating IP created with dns-name wordpress, subnet-id 95909b69-e236-4c75-b039-e2a8f71a9553,dns-domain vps.tecnico.ulisboa.pt. - IP 192.92.147.101

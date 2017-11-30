@@ -32,7 +32,6 @@ insert into Produto values('EAN00004','Categoria4','000000001','design');
 insert into Produto values('EAN00005','Categoria5','000000001','design');
 insert into Produto values('EAN00006','Categoria6','000000001','design');
 insert into Produto values('EAN00007','Categoria7','000000001','design');
-
 insert into Produto values('EAN00008','Categoria1','000000002','design');
 
 insert into Fornecedor_Secundario values('000000002','EAN00007');
@@ -43,12 +42,36 @@ insert into Fornecedor_Secundario values('000000002','EAN00003');
 insert into Fornecedor_Secundario values('000000002','EAN00002');
 insert into Fornecedor_Secundario values('000000002','EAN00001');
 
-insert into Corredor values('')
 
-insert into EventoReposicao values('joao','2006-10-27 23:00:00');
-insert into EventoReposicao values('silva','2005-01-27 23:00:00');
-insert into EventoReposicao values('carlos','2002-01-30 23:00:00');
-insert into EventoReposicao values('manuel','2001-09-24 23:00:00');
-insert into EventoReposicao values('dias','2011-11-21 23:00:00');
 
-insert into Reposicao values(10,1,'EAN00001','sds',1,'Operador','2001-10-27 23:00:00');
+-- 
+
+insert into Corredor values(1,5);
+insert into Corredor values(2,6);
+insert into Corredor values(3,7);
+
+insert into Prateleira values('esquerdo',10,1);
+insert into Prateleira values('direito',10,1);
+insert into Prateleira values('esquerdo',5,2);
+insert into Prateleira values('direito',5,2);
+
+insert into EventoReposicao values('nome1','2006-10-27 23:00:00');
+insert into EventoReposicao values('nome2','2005-01-27 23:00:00');
+insert into EventoReposicao values('nome3','2002-01-30 23:00:00');
+insert into EventoReposicao values('nome4','2001-09-24 23:00:00');
+insert into EventoReposicao values('nome5','2011-11-21 23:00:00');
+
+insert into Reposicao values(10,'EAN00001',1,10,'esquerdo','nome2','2005-01-27 23:00:00');
+insert into Reposicao values(10,'EAN00001',1,10,'esquerdo','nome3','2002-01-30 23:00:00');
+insert into Reposicao values(10,'EAN00002',1,10,'esquerdo','nome1','2006-10-27 23:00:00');
+insert into Reposicao values(10,'EAN00002',1,10,'esquerdo','nome1','2006-10-27 23:00:00');
+
+
+
+
+
+
+
+
+
+
