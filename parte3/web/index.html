@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -22,11 +23,15 @@
         }
     </script>
     <div id = "container">
-        <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" > Criar Categoria </button>
-        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToCreateProd()" > Criar Produto </button>
-        <button id ="listRep" class = "mainMenuButtons right" onclick="changeTolistRep()" > Listar Reposições </button>
-        <button id ="listSubCat" class = "mainMenuButtons left"onclick="changeTolistSubCat()" > Listar Sub-Categorias </button>
+        <button id ="createProd" class = "mainMenuButtons left" onclick="changeToCreateProd()" > Criar Produto </button>
+        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToCreateProd()" > Remover Produto </button>
         <button id ="changeProd" class = "mainMenuButtons right"onclick="changeToChangeProd()" > Alterar designação </button>
+
+        <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" > Criar Categoria </button>
+        <button id ="createCat" class = "mainMenuButtons center " onclick="changeToCreateCat()" > Remover Categoria </button>
+        <button id ="listSubCat" class = "mainMenuButtons right"onclick="changeTolistSubCat()" > Listar Sub-Categorias </button>
+
+        <button id ="listRep" class = "mainMenuButtons center" onclick="changeTolistRep()" > Listar Reposições </button>
     </div>
 
 </html>

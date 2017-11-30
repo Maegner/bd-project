@@ -85,64 +85,56 @@
     echo("<script> console.log({$primarioNif})</script>");
 
     $secundarySuppliersNif = array();
-    $int = intval($secundarios);
+    $int = intval($secundarios); 
     for($i = 1; $i <= $int; ++$i) {
         $index = $i;
         $string = 'FornecedorSecundarioNif'.$index;
         $value = $_REQUEST[$string];
-        if($value != primarioNif && $value != ""){
+        if($value != $primarioNif && $value != ""){
             array_push($secundarySuppliersNif,$value);   
         }
     }
     
-        $i = 1;
-        $secundarySuppliersName = array();
-        $int = intval($secundarios);
-        for($i = 1; $i <= $int; ++$i) {
-            $index = $i;
-            $string = 'FornecedorSecundarioNome'.$index;
-            $value = $_REQUEST[$string];
-            if($value != ""){
-                array_push($secundarySuppliersName, $value);
-            }
+    $i = 1;
+    $secundarySuppliersName = array();
+    $int = intval($secundarios);
+    for($i = 1; $i <= $int; ++$i) {
+        $index = $i;
+        $string = 'FornecedorSecundarioNome'.$index;
+        $value = $_REQUEST[$string];
+        if($value != ""){
+            array_push($secundarySuppliersName, $value);
         }
-        
-    
-    
-        if(!isRealDate($data)){
-            echo("<p>ERROR: date inserted is not valid please insert in format YYYY-MM-DD</p>");
-        }
-    
-        else{
-            try
-            {
-                $host = "db.ist.utl.pt";
-                $user ="ist426018";
-                $password = "egmk9483";
-                $dbname = $user;
-                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        
-                    if ($remover != "on") {
-                        postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
-                    }
-                    else {
-                        $sql = "DELETE FROM Produto
-                                WHERE ean = $ean;";
-                    }
-                $db = null;
-                echo("<p>Insercao foi um sucesso</p>");
-            }
-            catch (Exception $e)
-            {
-                echo("<p>ERROR GeneralArea: {$e->getMessage()}</p>");
-            }
-        }
-    
-    
+    }
 
+    if(!isRealDate($data)){
+        echo("<p>ERROR: date inserted is not valid please insert in format YYYY-MM-DD</p>");
+    }
+
+    else {
+        try {
+            $host = "db.ist.utl.pt";
+            $user ="ist426018";
+            $password = "egmk9483";
+            $dbname = $user;
+            $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
+    
+                if ($remover != "on") {
+                    postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
+                }
+                else {
+                    $sql = "DELETE FROM Produto
+                            WHERE ean = $ean;";
+                }
+            $db = null;
+            echo("<p>Insercao foi um sucesso</p>");
+        }
+        catch (Exception $e) {
+            echo("<p>ERROR GeneralArea: {$e->getMessage()}</p>");
+        }
+    }
 ?>
     </body>
 </html>

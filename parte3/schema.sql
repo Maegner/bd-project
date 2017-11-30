@@ -19,12 +19,12 @@ CREATE TABLE Categoria(
 
 CREATE TABLE Categoria_Simples(
     nome VARCHAR(50) NOT NULL UNIQUE,
-    FOREIGN KEY (nome) REFERENCES Categoria
+    FOREIGN KEY (nome) REFERENCES Categoria ON DELETE CASCADE
 );
 
 CREATE TABLE Super_Categoria(
     nome VARCHAR(50) NOT NULL UNIQUE,
-    FOREIGN KEY (nome) REFERENCES Categoria
+    FOREIGN KEY (nome) REFERENCES Categoria ON DELETE CASCADE
 );
 
 CREATE TABLE Constituida(
@@ -54,8 +54,8 @@ CREATE TABLE Produto(
 
 CREATE TABLE Fornecedor_secundario(
     nif VARCHAR(9) NOT NULL,
-    ean VARCHAR(25) NOT NULL,
-    FOREIGN KEY(nif) REFERENCES Fornecedor(nif),
+    ean VARCHAR(25),
+    FOREIGN KEY(nif) REFERENCES Fornecedor(nif) ON DELETE CASCADE,
     FOREIGN KEY(ean) REFERENCES Produto(ean)
 );
 
@@ -81,11 +81,11 @@ CREATE TABLE Planograma(
     unidades INT NOT NULL
     localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
-    ean VARCHAR(25) NOT NULL,
+    ean VARCHAR(25) NOT NULL ,
     lado VARCHAR(8) NOT NULL,
     altura INT NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
-    FOREIGN KEY(ean) REFERENCES Produto,
+    FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
     CHECK(unidades >= 0)
 );
@@ -105,7 +105,7 @@ CREATE TABLE Reposicao(
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
-    FOREIGN KEY(ean) REFERENCES Produto,
+    FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
     FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,
     CHECK(unidades >= 0)

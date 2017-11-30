@@ -17,8 +17,7 @@
 
         $sql = "UPDATE Produto
                 SET design = '$designacao'
-                WHERE ean = '$ean';"
-        ;
+                WHERE ean = '$ean';";
 
         $db->query($sql);
 
