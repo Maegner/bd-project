@@ -41,10 +41,35 @@ insert into Fornecedor_Secundario values('000000002','EAN00004');
 insert into Fornecedor_Secundario values('000000002','EAN00003');
 insert into Fornecedor_Secundario values('000000002','EAN00002');
 insert into Fornecedor_Secundario values('000000002','EAN00001');
+insert into Fornecedor_Secundario values('000000002','EAN00001');
 
 
 
--- 
+-- d)
+
+insert into Fornecedor values('000000006','fornecedor6');
+insert into Fornecedor values('000000007','fornecedor7');
+insert into Fornecedor values('000000008','fornecedor8');
+insert into Fornecedor values('000000009','fornecedor9');
+insert into Fornecedor values('0000000010','fornecedor10');
+insert into Fornecedor values('000000011','fornecedor11');
+insert into Fornecedor values('0000000012','fornecedor12');
+insert into Fornecedor values('0000000013','fornecedor13');
+insert into Fornecedor values('0000000014','fornecedor14');
+insert into Fornecedor values('000000015','fornecedor15');
+
+insert into Fornecedor_Secundario values('000000001','EAN00001');
+insert into Fornecedor_Secundario values('000000002','EAN00001');
+insert into Fornecedor_Secundario values('000000003','EAN00001');
+insert into Fornecedor_Secundario values('000000004','EAN00001');
+insert into Fornecedor_Secundario values('000000005','EAN00001');
+insert into Fornecedor_Secundario values('000000006','EAN00001');
+insert into Fornecedor_Secundario values('000000008','EAN00001');
+insert into Fornecedor_Secundario values('000000009','EAN00001');
+insert into Fornecedor_Secundario values('000000010','EAN00001');
+insert into Fornecedor_Secundario values('000000011','EAN00001');
+
+-- c) e e)
 
 insert into Corredor values(1,5);
 insert into Corredor values(2,6);
