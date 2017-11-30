@@ -59,19 +59,21 @@ WHERE Fornecedor.nif IN (
 );
 
 
-
-
-
--- c
+-- c) Quais os produtos (ean) que nunca foram repostos?
 
 SELECT ean from Produto where ean not in 
 (SELECT ean from Reposicao);
 
--- d
+-- d) Quais os produtos (ean) com um número de fornecedores secundários superior a 10?
 
 SELECT ean from Produto where ean in
 (SELECT ean from Fornecedor_secundario group by ean having count(ean)>10);
 
--- e
+-- e) Quais os produtos (ean) que foram repostos sempre pelo mesmo operador?
 
 SELECT ean from Reposicao group by ean having count(distinct operador) = 1;
+
+
+
+
+
