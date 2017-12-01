@@ -2,7 +2,11 @@
     <body>
 <?php
     $nomeCategoria = $_REQUEST['NomeCategoria'];
-    $remover = $_REQUEST['RemoverCategoria'];
+
+    if ($nomeCategoria == "") {
+        echo("<p>NomeCategoria vazio<p>");
+        return;
+    }
 
     try
     {
@@ -13,14 +17,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if ($remover != "on") {
-            $sql = "INSERT INTO Categoria VALUES('$nomeCategoria');";
-        }
-        else {
-            $sql = "DELETE FROM Categoria
-                    WHERE nome = '$nomeCategoria';"
-            ;
-        }
+        $sql = "INSERT INTO Categoria VALUES('$nomeCategoria');";
 
         $db->query($sql);
 

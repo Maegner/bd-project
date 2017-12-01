@@ -53,26 +53,28 @@
             <!--Provavelmente separar o criar do remover era boa ideia-->
             <!--Adicionar e remover categorias-->
             <div id = "Query1" class = "Query" style="float:left">
-                    <h3>Adicionar ou remover categoria</h3>
+                <h3 style="text-align: center">Adicionar ou remover categoria</h3>
 
-                    <form action="../applicationTier/superCategoria.php" method="post">
-                        <table id="TabelaCategoria" style="text-align: right; width: 350px;">
-                            <tr>
-                                <td>Super categoria: </td>
-                                <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
-                            </tr>
-                            <tr>
-                                <td>Número de sub-categorias: </td>
-                                <td class="inputColumn"><input type="number" name="SubCategorias" min="1" onchange="updateCat()" id="subNumber"></td>   
-                            </tr>
-                            <tr id="PrimeiraSub" class="SubCat">
-                                <td>Sub-Categoria 1:</td>
-                                <td class="inputColumn"><input type="text" name="SubCategoria1" /></td> 
-                            </tr>
-                        </table>
-                        <p> <input type="submit" value="Submit"/> </p>
-                    </form>
-                </div>
-  
+                <form action="../applicationTier/superCategoria.php" method="post">
+                    <table id="TabelaCategoria" style="text-align: right; width: 350px;">
+                        <tr>
+                            <td>Super categoria: </td>
+                            <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
+                        </tr>
+                        <tr>
+                            <td>Número de sub-categorias: </td>
+                            <td class="inputColumn"><input type="number" name="SubCategorias" min="1" onchange="updateCat()" id="subNumber"></td>   
+                        </tr>
+                        <tr id="PrimeiraSub" class="SubCat">
+                            <td>Sub-Categoria 1:</td>
+                            <td class="inputColumn"><input type="text" name="SubCategoria1" /></td> 
+                        </tr>
+                    </table>
+                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
+                </form>
+            </div>
+            <button onclick="window.history.back()" style="float:left; clear:both">
+                Voltar
+            </button>
         </body>
     </html>

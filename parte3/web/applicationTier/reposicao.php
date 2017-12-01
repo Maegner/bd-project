@@ -3,6 +3,11 @@
 <?php
     $ean = $_REQUEST['EAN_Reposicao'];
 
+    if ($ean == "") {
+        echo("<p>EAN vazio<p>");
+        return;
+    }
+    
     try
     {
         $host = "db.ist.utl.pt";

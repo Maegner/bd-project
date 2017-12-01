@@ -7,7 +7,7 @@
 
         <body>
             <div id = "Query4" class = "Query" style="float:left">
-                <h3> Alterar designação de um produto </h3>
+                <h3 style="text-align: center"> Alterar designação de um produto </h3>
 
                 <form action="../applicationTier/designacao.php" method="post">
                     <table style="text-align: right;">
@@ -20,8 +20,11 @@
                             <td class="inputColumn"><input type="text" name="NovaDesignacao"/></td> 
                         </tr>
                     </table>
-                    <p> <input type="submit" value="Submit"/> </p>
+                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
                 </form>
-            </div> 
+            </div>
+            <button onclick="window.history.back()" style="float:left; clear:both">
+                Voltar
+            </button>
         </body>
 </html>

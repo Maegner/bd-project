@@ -7,6 +7,7 @@
 
     <script>
             function updateSec() {
+                console.log("Updated");
                 var table = document.getElementById("TabelaProduto");
                 var nifRow = document.getElementById("PrimeiroNIFSecundario");
                 var nameRow = document.getElementById("PrimeiroNOMESecundario");
@@ -31,15 +32,13 @@
                     newRow.children[0].innerHTML = "Nome Fornecedor Secundario ".concat((i+2).toString(), ":");
                     var index = 9 + i*2;
                     table.children[0].insertBefore(newRow, table.children[0].children[index]);
-                    
-                    console.log(newRow.children[1].children[0].name);
                 }
             }
         </script>
 
     <body>
         <div id = "Query2" class = "Query" style="float:left">
-            <h3>Adicionar ou remover produto</h3>
+            <h3 style="text-align: center">Adicionar ou remover produto</h3>
 
             <form action="../applicationTier/produto.php" method="post">
                 <table id="TabelaProduto" style="text-align: right;">
@@ -80,8 +79,11 @@
                         <td class="inputColumn"><input type="text" name="DataProduto"/></td> 
                     </tr>
                 </table>
-                <p> <input type="submit" value="Submit"/> </p>
+                <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
             </form>
         </div>
+        <button onclick="window.history.back()" style="float:left; clear:both">
+            Voltar
+        </button>
     </body>
 </html>

@@ -9,18 +9,20 @@
             <!--Provavelmente separar o criar do remover era boa ideia-->
             <!--Adicionar e remover categorias-->
             <div id = "Query1" class = "Query" style="float:left">
-                    <h3>Adicionar ou remover categoria</h3>
-    
-                    <form action="../applicationTier/categoria.php" method="post">
-                        <table style="text-align: right;">
-                            <tr>
-                                <td>Nova categoria: </td>
-                                <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
-                            </tr>
-                        </table>
-                        <p> <input type="submit" value="Submit"/> </p>
-                    </form>
-                </div>
-  
+                <h3 style="text-align: center">Adicionar ou remover categoria</h3>
+
+                <form action="../applicationTier/categoria.php" method="post">
+                    <table style="text-align: right;">
+                        <tr>
+                            <td>Nova categoria: </td>
+                            <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
+                        </tr>
+                    </table>
+                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
+                </form>
+            </div>
+            <button onclick="window.history.back()" style="float:left; clear:both">
+                Voltar
+            </button>
         </body>
     </html>

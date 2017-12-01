@@ -12,6 +12,12 @@
         }
     }
     $ean = $_REQUEST['EAN'];
+
+    if ($ean == "") {
+        echo("<p>EAN vazio<p>");
+        return;
+    }
+
     try
     {
         $host = "db.ist.utl.pt";

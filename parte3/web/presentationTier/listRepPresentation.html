@@ -8,17 +8,20 @@
         <body>
             <!--Listar reposicao de produto-->
             <div id = "Query3" class = "Query" style="float:left">
-                    <h3> Listar reposição de um produto </h3>
-    
-                    <form action="../applicationTier/reposicao.php" method="post">
-                        <table style="text-align: right;">
-                            <tr>
-                                <td>EAN: </td>
-                                <td class="inputColumn"><input type="text" name="EAN_Reposicao"/></td> 
-                            </tr>
-                        </table>
-                        <p> <input type="submit" value="Submit"/> </p>
-                    </form>
+                <h3 style="text-align: center"> Listar reposição de um produto </h3>
+
+                <form action="../applicationTier/reposicao.php" method="post">
+                    <table style="text-align: right;">
+                        <tr>
+                            <td>EAN: </td>
+                            <td class="inputColumn"><input type="text" name="EAN_Reposicao"/></td> 
+                        </tr>
+                    </table>
+                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
+                </form>
             </div>
+            <button onclick="window.history.back()" style="float:left; clear:both">
+                Voltar
+            </button>
         </body>
     </html>
