@@ -78,9 +78,29 @@
     $primarioNif = $_REQUEST['FornecedorPrimarioNif'];
     $primarioNome = $_REQUEST['FornecedorPrimarioNome'];
     $secundarios = $_REQUEST['FornecedoresSecundarios'];
+
+    if ($ean == "") {
+        echo("<p>EAN vazio<p>");
+        return;
+    }
+    if ($designacao == "") {
+        echo("<p>Designacao vazio<p>");
+        return;
+    }
+    if ($categoria == "") {
+        echo("<p>Categoria vazio<p>");
+        return;
+    }
+    if ($primarioNif == "") {
+        echo("<p>FornecedorPrimarioNif vazio<p>");
+        return;
+    }
+    if ($primarioNome == "") {
+        echo("<p>FornecedorPrimarioNome vazio<p>");
+        return;
+    }
  
     $data = $_REQUEST['DataProduto'];
-    $remover = $_REQUEST['RemoverProduto'];
 
     echo("<script> console.log({$primarioNif})</script>");
 
@@ -120,14 +140,8 @@
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
+            postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
     
-                if ($remover != "on") {
-                    postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
-                }
-                else {
-                    $sql = "DELETE FROM Produto
-                            WHERE ean = $ean;";
-                }
             $db = null;
             echo("<p>Insercao foi um sucesso</p>");
         }

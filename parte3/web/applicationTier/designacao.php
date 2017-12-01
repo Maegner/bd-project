@@ -4,6 +4,15 @@
     $ean = $_REQUEST['EAN'];
     $designacao = $_REQUEST['NovaDesignacao'];
 
+    if ($ean == "") {
+        echo("<p>EAN vazio<p>");
+        return;
+    }
+    if ($designacao == "") {
+        echo("<p>Designação vazio<p>");
+        return;
+    }
+
     try
     {
         $host = "db.ist.utl.pt";

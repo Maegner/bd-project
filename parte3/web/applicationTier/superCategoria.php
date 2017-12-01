@@ -42,6 +42,12 @@
     }
 
     $nameSuper = $_REQUEST['NomeCategoria'];
+
+    if ($nameSuper == "") {
+        echo("<p>NomeCategoria vazio<p>");
+        return;
+    }
+
     $numberSub = $_REQUEST['SubCategorias'];
     $subCats = array();
 

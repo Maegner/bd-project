@@ -3,6 +3,12 @@
 <?php
 
     $nomeCategoria = $_REQUEST['NomeCategoria'];
+
+    if ($nomeCategoria == "") {
+        echo("<p>NomeCategoria vazio<p>");
+        return;
+    }
+
     try
     {
         $host = "db.ist.utl.pt";

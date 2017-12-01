@@ -7,7 +7,7 @@
 
         <body>
             <div id = "Query5" class = "Query" style="float:left">
-                <h3> Listar sub-categorias de uma categoria </h3>
+                <h3 style="text-align: center"> Listar sub-categorias de uma categoria </h3>
 
                 <form action="../applicationTier/subCategorias.php" method="post">
                     <table style="text-align: right;">
@@ -16,8 +16,11 @@
                             <td class="inputColumn"><input type="text" name="SuperCategoria"/></td> 
                         </tr>
                     </table>
-                    <p> <input type="submit" value="Submit"/> </p>
+                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input type="submit" value="Submit"/> </p>
                 </form>
-            </div>              
+            </div>   
+            <button onclick="window.history.back()" style="float:left; clear:both">
+                Voltar
+            </button>         
         </body>
 </html>
