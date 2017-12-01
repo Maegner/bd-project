@@ -2,6 +2,18 @@
     <body>
 <?php
 
+    function doQuery($query,$database){
+        try{
+            $database->query($query);
+        }
+
+        catch(PDOException $e){
+            $rollback = "ROLLBACK;";
+            doQuery($rollback,$db);
+            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+        }
+    }
+
     $nomeCategoria = $_REQUEST['NomeCategoria'];
     try
     {
@@ -12,14 +24,21 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "DELETE FROM Categoria WHERE nome = '$nomeCategoria';";
+        $start = "START TRANSACTION;";
+        doQuery($start,$db);
 
-        $db->query($sql);
+        $delCat = "DELETE FROM Categoria WHERE nome = '$nomeCategoria';";
+        doQuery($delCat,$db);
+
+        $end = "COMMIT;";
+        doQuery($end,$db);
 
         $db = null;
     }
     catch (PDOException $e)
     {
+        $rollback = "ROLLBACK;";
+        doQuery($rollback,$db);
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
 ?>
