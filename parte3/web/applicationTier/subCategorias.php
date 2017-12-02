@@ -81,7 +81,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $exists = "SELECT * FROM Super_Categoria WHERE nome = '$superCat';"
+        $exists = "SELECT * FROM Super_Categoria WHERE nome = '$superCat';";
         $result = $db->query($exists);
         
                 if($result->rowCount()==0){

@@ -1,9 +1,10 @@
 <html>
-        <head>
-            <meta charset="utf-8">
-            <title> Projeto de BD </title>
-            <link rel="stylesheet" href="style.css">
-                            <!-- load Ink's CSS -->
+
+<head>
+    <meta charset="utf-8">
+    <title> Projeto de BD </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- load Ink's CSS -->
     <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
     <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
 
@@ -16,8 +17,8 @@
     <script type="text/javascript" src="../ink/js/modernizr.js"></script>
     <script type="text/javascript">
         Modernizr.load({
-          test: Modernizr.flexbox,
-          nope : '../ink/css/ink-legacy.min.css'
+            test: Modernizr.flexbox,
+            nope: '../ink/css/ink-legacy.min.css'
         });
     </script>
 
@@ -27,35 +28,40 @@
     <script type="text/javascript" src="../ink/js/autoload.js"></script>
 
     <style type="text/css">
-
         body {
             background: #ededed;
         }
-
+        
         header {
             border-bottom: 1px solid #cecece;
         }
-
+        
         footer {
             background: #ccc;
         }
-
     </style>
-        </head>
+</head>
 
-        <script>
-                function changeToCreateCat(){
-                    window.location.href = "./createSimpleCat.html";
-                }
-                function changeToCreateSuperCat(){
-                    window.location.href = "./createSuperCat.html";
-                }
-        </script>
-        
-        <body>
-            <div id = "container">
-                <button class="ink-button" id ="createCat" class = "mainMenuButtons left" onclick="changeToCreateSuperCat()"> Criar Super-Categoria </button>
-                <button class="ink-button" id ="createCat" class = "mainMenuButtons right" onclick="changeToCreateCat()"> Criar Categoria Simples </button>
-            </div>    
-        </body>
+<script>
+    function changeToCreateCat() {
+        window.location.href = "./createSimpleCat.html";
+    }
+
+    function changeToCreateSuperCat() {
+        window.location.href = "./createSuperCat.html";
+    }
+</script>
+
+<body>
+    <div id="container">
+        <button class="ink-button" id="createCat" class="mainMenuButtons left" onclick="changeToCreateSuperCat()"> Criar Super-Categoria </button>
+        <button class="ink-button" id="createCat" class="mainMenuButtons right" onclick="changeToCreateCat()"> Criar Categoria Simples </button>
+    </div>
+    <div style="margin-left:auto; margin-right: auto; width: 5%;">
+        <button onclick="window.history.back()" style="float:left; clear:both; font-size: 200%">
+                    Voltar
+                </button>
+    </div>
+</body>
+
 </html>
