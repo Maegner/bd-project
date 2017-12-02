@@ -82,10 +82,10 @@ CREATE TABLE Planograma(
     face INT NOT NULL,
     unidades INT NOT NULL,
     localizacao VARCHAR(10) NOT NULL,
-    nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL ,
     lado VARCHAR(8) NOT NULL,
     altura INT NOT NULL,
+    nro INT NOT NULL,
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura,nro) REFERENCES Prateleira
 );
@@ -104,7 +104,7 @@ CREATE TABLE Reposicao(
     lado VARCHAR(8) NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
-    PRIMARY KEY(ean, altura, lado, nro),
+    PRIMARY KEY(ean, altura, lado, nro,operador,instante),
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura,nro) REFERENCES Prateleira,
     FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,
