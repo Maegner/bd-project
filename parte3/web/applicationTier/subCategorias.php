@@ -67,7 +67,10 @@
     $superCat = $_REQUEST['SuperCategoria'];
 
     if ($superCat == "") {
-        echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERROR] SuperCategoria vazio</p> </div>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERROR] SuperCategoria vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -85,7 +88,12 @@
         $result = $db->query($exists);
         
                 if($result->rowCount()==0){
-                    echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] Nao existe super categoria com o nome especificado</p> </div>");
+                    
+                    echo("<div class=\"ink-alert basic error\" role=\"alert\">
+                    <button class=\"ink-dismiss\">&times;</button>
+                    <p><b>Erro:</b>[ERRO] Nao existe super categoria com o nome especificado</p>
+                    </div>");
+                    
                     echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
                     return;
                 } 
@@ -108,7 +116,10 @@
     }
     catch (PDOException $e)
     {
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> ERROR: {$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>

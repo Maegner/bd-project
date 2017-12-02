@@ -73,7 +73,10 @@
         catch(PDOException $e){
             $hadProblem = true;
             $db->query("ROLLBACK;");
-            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>ERROR In Query({$query}): {$e->getMessage()}</p>
+            </div>");
         }
     }
     //TODO: Verificar quando os secondary supplier vem vazio
@@ -85,7 +88,10 @@
         if(count($sups) != count($noms) or count($sups) == 0 ){
             $hadProblem = true;
             $db->query("ROLLBACK;");
-            echo("<p>ERROR: Insert the correct number of names and nifs</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>ERROR: Insert the correct number of names and nifs</p>
+            </div>");
             return;
         }
 
@@ -130,27 +136,42 @@
     $secundarios = $_REQUEST['FornecedoresSecundarios'];
 
     if ($ean == "") {
-        echo("<p>[ERRO] EAN vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] EAN vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($designacao == "") {
-        echo("<p> [ERRO] Designacao vazia<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Designacao vazia</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($categoria == "") {
-        echo("<p> [ERRO] Categoria vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Categoria vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($primarioNif == "") {
-        echo("<p>[ERRO] FornecedorPrimarioNif vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] FornecedorPrimarioNif vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($primarioNome == "") {
-        echo("<p>[ERRO]FornecedorPrimarioNome vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO]FornecedorPrimarioNome vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -170,7 +191,10 @@
         }
     }
     if(count($secundarySuppliersNif) == 0){
-        echo("<p>[ERRO] Insira pelo menos um fornecedor secundario diferente do primario</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Insira pelo menos um fornecedor secundario diferente do primario</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -188,13 +212,19 @@
     }
 
     if(count($secundarySuppliersName) != count($secundarySuppliersNif)){
-        echo("<p>[ERRO] Insira a mesma quantidade de nomes e de nifs</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Insira a mesma quantidade de nomes e de nifs</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return; 
     }
 
     if(!isRealDate($data)){
-        echo("<p>[ERRO] Data inserida nao valida</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Data inserida nao valida</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -216,7 +246,10 @@
 
             if($result->rowCount()>0){
                 $db->query("ROLLBACK;");
-                echo ("<div class=\"ink-alert error\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] Produto com EAN = {$ean} ja existe</p> </div>");
+                echo("<div class=\"ink-alert basic error\" role=\"alert\">
+                <button class=\"ink-dismiss\">&times;</button>
+                <p><b>Erro:</b>[ERRO] Produto com EAN = {$ean} ja existe</p>
+                </div>");
                 echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
                 return;
             }
@@ -226,13 +259,19 @@
             $db->query("COMMIT;");
             $db = null;
             if (!$hadProblem){
-                echo("<p>Insercao foi um sucesso</p>");
+                echo("<div class=\"ink-alert basic success\" role=\"alert\">
+                <button class=\"ink-dismiss\">&times;</button>
+                <p><b>Sucesso:</b>Insercao foi um sucesso</p>
+                </div>");
             }
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         }
         catch (Exception $e) {
             $db->query("ROLLBACK;");
-            echo("<p>ERROR GeneralArea: {$e->getMessage()}</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b> GeneralArea: {$e->getMessage()}</p>
+            </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         }
     }

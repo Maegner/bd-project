@@ -51,12 +51,18 @@
     $designacao = $_REQUEST['NovaDesignacao'];
 
     if ($ean == "") {
-        echo("<p>[ERRO] EAN vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] EAN vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($designacao == "") {
-        echo("<p>[ERRO] Designação vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Designação vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -77,7 +83,10 @@
 
         if($result->rowCount()==0){
             $db->query("ROLLBACK;");
-            echo("<p>[ERRO] Nao existe produto com o ean especificado<p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>[ERRO] Nao existe produto com o ean especificado</p>
+            </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
@@ -93,7 +102,10 @@
         $db = null;
 
         if(!hadProblem){
-            echo("<p> Atualzação efectuada com sucesso </p>");
+            echo("<div class=\"ink-alert basic success\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Sucesso:</b>Atualzação efectuada com sucesso</p>
+            </div>");
         }
 
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
@@ -101,7 +113,10 @@
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>{$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>

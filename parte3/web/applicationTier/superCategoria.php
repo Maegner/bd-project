@@ -64,7 +64,10 @@
 
         catch(PDOException $e){
             $hadProblem = true;
-            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b> ERROR In Query({$query}): {$e->getMessage()}</p>
+            </div>");
             $db->query("ROLLBACK;");
             return false;
         }
@@ -126,7 +129,10 @@
         }
     }
     if(count($subCats) == 0){
-        echo("<p> [ERRO] Insira sub categorias validas");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> [ERRO] Insira sub categorias validas</p>
+        </div>");
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -144,7 +150,10 @@
 
         if(doesCatExist($nameSuper,$db)){
             $db->query("ROLLBACK;");
-            echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b> [ERRO] A categoria que pertende inserir ja existe</p>
+            </div>");
             echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
@@ -156,14 +165,20 @@
         $db = null;
 
         if(!hadProblem){
-            echo ("<div class=\"ink-alert success\" role=\"alert\"><p><b>Sucesso:</b> <p>Insercao foi um sucesso</p> </div>");
+            echo("<div class=\"ink-alert basic success\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Sucesso:</b> Insercao foi um sucesso</p>
+            </div>");
         }
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> ERROR: {$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>

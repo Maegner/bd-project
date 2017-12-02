@@ -56,7 +56,10 @@
 
     $nomeCategoria = $_REQUEST['NomeCategoria'];
     if ($nomeCategoria == "") {
-        echo("<p>NomeCategoria vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>NomeCategoria vazio</p>
+        </div>");
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -73,7 +76,10 @@
         $db->query("START TRANSACTION;");
 
         if(exists($nomeCategoria,$db)){
-            echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>[ERRO] A categoria que pertende inserir ja existe</p>
+            </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             $db->query("ROLLBACK;");
             return;
@@ -92,13 +98,19 @@
 
         $db = null;
 
-        echo("<p>Insercao foi um sucesso</p>");
+        echo("<div class=\"ink-alert basic success\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Sucesso:</b>Insercao foi um sucesso</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>ERROR: {$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
