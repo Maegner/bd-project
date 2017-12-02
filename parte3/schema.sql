@@ -32,6 +32,7 @@ CREATE TABLE Super_Categoria(
 CREATE TABLE Constituida(
     super_categoria VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
+    PRIMARY KEY(super_categoria,categoria),
     FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome) ON DELETE CASCADE,
     FOREIGN KEY (categoria) REFERENCES Categoria(nome) ON DELETE CASCADE
 );
@@ -72,22 +73,21 @@ CREATE TABLE Prateleira(
     lado VARCHAR(8) NOT NULL,
     altura INT NOT NULL,
     nro INT NOT NULL,
-    PRIMARY KEY(lado,altura),
+    PRIMARY KEY(lado,altura,nro),
     FOREIGN KEY(nro) REFERENCES Corredor,
     CHECK(altura > 0)
 );
 
 CREATE TABLE Planograma(
-    face VARCHAR(5) NOT NULL,
+    face INT NOT NULL,
     unidades INT NOT NULL,
     localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL ,
     lado VARCHAR(8) NOT NULL,
     altura INT NOT NULL,
-    FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
-    FOREIGN KEY(lado,altura) REFERENCES Prateleira
+    FOREIGN KEY(lado,altura,nro) REFERENCES Prateleira
 );
 
 CREATE TABLE EventoReposicao(
@@ -104,9 +104,9 @@ CREATE TABLE Reposicao(
     lado VARCHAR(8) NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
-    FOREIGN KEY(nro) REFERENCES Corredor, 
+    PRIMARY KEY(ean, altura, lado, nro),
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
-    FOREIGN KEY(lado,altura) REFERENCES Prateleira,
+    FOREIGN KEY(lado,altura,nro) REFERENCES Prateleira,
     FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,
     CHECK(unidades > 0)
 );

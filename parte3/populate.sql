@@ -108,6 +108,11 @@ insert into Reposicao values(10,'EAN00004',1,10,'esquerdo','nome3','2002-01-30 2
 
 
 
+-- general
+
+insert into Prateleira values('esquerdo',100,1);
+insert into Prateleira values('esquerdo',100,2);
+insert into Prateleira values('esquerdo',100,3);
 
 
 
