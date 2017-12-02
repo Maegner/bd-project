@@ -7,12 +7,15 @@
     <body>
 <?php
 
+    $hadProblem = false;
+
     function doQuery($query,$database){
         try{
             $database->query($query);
         }
 
         catch(PDOException $e){
+            $hadProblem = true;
             $rollback = "ROLLBACK;";
             doQuery($rollback,$db);
             echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
@@ -75,8 +78,9 @@
         doQuery($end,$db);
 
         $db = null;
-        
-        echo("<p> Remoção efectuada com sucesso </p>");
+        if(!$hadProblem){
+            echo("<p> Remoção efectuada com sucesso </p>");
+        }
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
