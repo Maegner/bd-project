@@ -105,6 +105,10 @@
     $nameSuper = $_REQUEST['NomeCategoria'];
 
     if ($nameSuper == "") {
+        echo("<div class=\"ink-alert basic\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Warning:</b> There's a warning for you</p>
+    </div>");
         echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] NomeCategoria vazio</p> </div>");
         echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
