@@ -9,7 +9,8 @@
     $ean = $_REQUEST['EAN_Reposicao'];
 
     if ($ean == "") {
-        echo("<p>EAN vazio<p>");
+        echo("<p>[ERRO] EAN vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     
@@ -27,7 +28,9 @@
         $result = $db->query($sql);
 
         if($result->rowCount()==0){
-            echo ("<p> Nenhuma reposicao encontrada para o produto com EAN = {$ean}");
+            echo ("<p>[ERRO] Nenhuma reposicao encontrada para o produto com EAN = {$ean}");
+            echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            return;
         }
 
         echo("<table border=\"0\" cellspacing=\"5\">\n");
