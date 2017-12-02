@@ -187,7 +187,7 @@
         }
     }
 
-    if(count($secundarySuppliersNome) != count($secundarySuppliersNif)){
+    if(count($secundarySuppliersName) != count($secundarySuppliersNif)){
         echo("<p>[ERRO] Insira a mesma quantidade de nomes e de nifs</p>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return; 
@@ -209,6 +209,17 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             $db->query("START TRANSACTION;");
+
+            $sql = "SELECT * FROM Reposicao WHERE ean = '$ean';";
+                
+            $result = $db->query($sql);
+
+            if($result->rowCount()>0){
+                $db->query("ROLLBACK;");
+                echo ("<div class=\"ink-alert error\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] Produto com EAN = {$ean} ja existe</p> </div>");
+                echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+                return;
+            }
 
             postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
             
