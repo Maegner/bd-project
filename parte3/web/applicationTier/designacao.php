@@ -101,7 +101,7 @@
 
         $db = null;
 
-        if(!hadProblem){
+        if(!$hadProblem){
             echo("<div class=\"ink-alert basic success\" role=\"alert\">
             <button class=\"ink-dismiss\">&times;</button>
             <p><b>Sucesso:</b>Atualzação efectuada com sucesso</p>
