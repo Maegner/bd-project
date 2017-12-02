@@ -1,65 +1,71 @@
 <html>
-        <head>
-            <meta charset="utf-8">
-            <title> Projeto de BD </title>
-            <link rel="stylesheet" href="style.css">
-            <!-- load Ink's CSS -->
-        <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
-        <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
 
-        <!-- load Ink's CSS for IE8 -->
-        <!--[if lt IE 9 ]>
+<head>
+    <meta charset="utf-8">
+    <title> Projeto de BD </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- load Ink's CSS -->
+    <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
+
+    <!-- load Ink's CSS for IE8 -->
+    <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
-        <!-- test browser flexbox support and load legacy grid if unsupported -->
-        <script type="text/javascript" src="../ink/js/modernizr.js"></script>
-        <script type="text/javascript">
-            Modernizr.load({
-              test: Modernizr.flexbox,
-              nope : '../ink/css/ink-legacy.min.css'
-            });
-        </script>
+    <!-- test browser flexbox support and load legacy grid if unsupported -->
+    <script type="text/javascript" src="../ink/js/modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+            test: Modernizr.flexbox,
+            nope: '../ink/css/ink-legacy.min.css'
+        });
+    </script>
 
-        <!-- load Ink's javascript files -->
-        <script type="text/javascript" src="../ink/js/holder.js"></script>
-        <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="../ink/js/autoload.js"></script>
+    <!-- load Ink's javascript files -->
+    <script type="text/javascript" src="../ink/js/holder.js"></script>
+    <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../ink/js/autoload.js"></script>
 
-        <style type="text/css">
-
-            body {
-                background: #ededed;
-            }
-
-            header {
-                border-bottom: 1px solid #cecece;
-            }
-
-            footer {
-                background: #ccc;
-            }
-
-        </style>
-        </head>
+    <style type="text/css">
+        body {
+            background: #ededed;
+        }
         
-        <body>
-            <!--Listar reposicao de produto-->
-            <div id = "Query3" class = "Query" style="float:left">
-                <h3 style="text-align: center"> Listar reposição de um produto </h3>
+        header {
+            border-bottom: 1px solid #cecece;
+        }
+        
+        footer {
+            background: #ccc;
+        }
+        
+        .inputColumn {
+            text-align: left;
+        }
+    </style>
+</head>
 
-                <form action="../applicationTier/reposicao.php" method="post">
-                    <table style="text-align: right;">
-                        <tr>
-                            <td>EAN: </td>
-                            <td class="inputColumn"><input type="text" name="EAN_Reposicao"/></td> 
-                        </tr>
-                    </table>
-                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input class="ink-button green" type="submit" value="Submit"/> </p>
-                </form>
-            </div>
-            <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both">
-                Voltar
-            </button>
-        </body>
-    </html>
+<body>
+    <!--Listar reposicao de produto-->
+    <div id="Query3" class="Query" style="margin-left: auto; margin-right: auto; width: 50%; padding-top: 10%">
+        <h3 style="text-align: center"> Listar reposição de um produto </h3>
+
+        <form action="../applicationTier/reposicao.php" method="post">
+            <table style="text-align: right; margin-left: auto; margin-right: auto;">
+                <tr>
+                    <td>EAN: </td>
+                    <td class="inputColumn"><input type="text" name="EAN_Reposicao" /></td>
+                </tr>
+            </table>
+            <p style="width:100px; margin-left:auto; margin-right:auto;"> <input class="ink-button green" type="submit" value="Submit" /> </p>
+        </form>
+    </div>
+    <div style="margin-left:auto; margin-right: auto; width: 5%;">
+        <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both; font-size: 120%">
+            Voltar
+        </button>
+    </div>
+</body>
+
+</html>

@@ -40,14 +40,18 @@
     footer {
         background: #ccc;
     }
+    
+    .inputColumn {
+        text-align: left;
+    }
 </style>
 
 <body>
-    <div id="Query5" class="Query" style="margin-left: auto; margin-right: auto; width: 50%;">
+    <div id="Query5" class="Query" style="margin-left: auto; margin-right: auto; width: 50%; padding-top: 10%">
         <h3 style="text-align: center"> Listar sub-categorias de uma categoria </h3>
 
         <form action="../applicationTier/subCategorias.php" method="post">
-            <table style="text-align: right; margin-left: auto; margin-right: auto; width: 50%;">
+            <table style="text-align: right; margin-left: auto; margin-right: auto;">
                 <tr>
                     <td>Categoria: </td>
                     <td class="inputColumn"><input type="text" name="SuperCategoria" /></td>
@@ -57,7 +61,7 @@
         </form>
     </div>
     <div style="margin-left:auto; margin-right: auto; width: 5%;">
-        <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both; font-size: 150%">
+        <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both; font-size: 120%">
             Voltar
         </button>
     </div>

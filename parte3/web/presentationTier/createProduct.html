@@ -39,6 +39,10 @@
         footer {
             background: #ccc;
         }
+        
+        .inputColumn {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -60,13 +64,13 @@
         for (var i = 0; i < numberOfSecs - 1; ++i) {
             var newRow = nifRow.cloneNode(true);
             newRow.children[1].children[0].name = "FornecedorSecundarioNif".concat((i + 2).toString());
-            newRow.children[0].innerHTML = "NIF Fornecedor Secundario ".concat((i + 2).toString(), ":");
+            newRow.children[0].innerHTML = "NIF Fornecedor Secundario ".concat((i + 2).toString(), ": ");
             var index = 8 + i * 2;
             table.children[0].insertBefore(newRow, table.children[0].children[index]);
 
             var newRow = nameRow.cloneNode(true);
             newRow.children[1].children[0].name = "FornecedorSecundarioNome".concat((i + 2).toString());
-            newRow.children[0].innerHTML = "Nome Fornecedor Secundario ".concat((i + 2).toString(), ":");
+            newRow.children[0].innerHTML = "Nome Fornecedor Secundario ".concat((i + 2).toString(), ": ");
             var index = 9 + i * 2;
             table.children[0].insertBefore(newRow, table.children[0].children[index]);
         }
@@ -78,7 +82,7 @@
         <h3 style="text-align: center">Adicionar ou remover produto</h3>
 
         <form action="../applicationTier/produto.php" method="post">
-            <table id="TabelaProduto" style="text-align: right; margin-left: auto; margin-right: auto; width: 50%;">
+            <table id="TabelaProduto" style="text-align: right; margin-left: auto; margin-right: auto;">
                 <tr>
                     <td>EAN: </td>
                     <td class="inputColumn"><input type="text" name="EAN" /></td>
@@ -119,9 +123,11 @@
             <p style="width:100px; margin-left:auto; margin-right:auto;"> <input class="ink-button green" type="submit" value="Submit" /> </p>
         </form>
     </div>
-    <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both">
+    <div style="margin-left:auto; margin-right: auto; width: 5%;">
+        <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both; font-size: 120%">
             Voltar
         </button>
+    </div>
 </body>
 
 </html>
