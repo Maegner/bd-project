@@ -7,6 +7,8 @@
     <body>
 <?php
 
+    $hadProblem = false;
+
     function doesCatExist($catName,$database){
         $sql = "SELECT * FROM Categoria WHERE nome = '$catName';";
         $result = $database->query($sql);
@@ -23,6 +25,7 @@
         }
 
         catch(PDOException $e){
+            $hadProblem = true;
             echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
             $db->query("ROLLBACK;");
             return false;
@@ -46,6 +49,10 @@
         foreach($subCats as $subCat){
             if(!doesCatExist($subCat,$database)){
                 $sql = "INSERT INTO Categoria VALUES('$subCat');";
+                if (!doQuery($sql,$database)){
+                    return;
+                }
+                $sql = "INSERT INTO Categoria_Simples VALUES('$subCat');";
                 if (!doQuery($sql,$database)){
                     return;
                 }
@@ -107,7 +114,9 @@
 
         $db = null;
 
-        echo("<p>Insercao foi um sucesso</p>");
+        if(!hadProblem){
+            echo("<p>Insercao foi um sucesso</p>");
+        }
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)

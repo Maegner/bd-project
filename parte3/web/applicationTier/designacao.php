@@ -6,6 +6,9 @@
 </head>
     <body>
 <?php
+
+    $hadProblem = false;
+
     $ean = $_REQUEST['EAN'];
     $designacao = $_REQUEST['NovaDesignacao'];
 
@@ -51,7 +54,10 @@
 
         $db = null;
 
-        echo("<p> Atualzação efectuada com sucesso </p>");
+        if(!hadProblem){
+            echo("<p> Atualzação efectuada com sucesso </p>");
+        }
+
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
