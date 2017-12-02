@@ -6,12 +6,12 @@
         var numberOfSubs = document.getElementById("subNumber").value;
         var bRemove = document.getElementById("remove");
 
-        if (table.rows.length > 4) {
-            var firstRow = table.rows[4];
+        if (table.rows.length > 3) {
+            var firstRow = table.rows[3];
             while (firstRow.className == "SubCat") {
-                table.deleteRow(4);
-                if (table.rows.length < 5) break;
-                firstRow = table.rows[4];
+                table.deleteRow(3);
+                if (table.rows.length < 4) break;
+                firstRow = table.rows[3];
             }
         }
 
@@ -19,26 +19,8 @@
             var newRow = catRow.cloneNode(true);
             newRow.children[1].children[0].name = "SubCategoria".concat((i + 2).toString());
             newRow.children[0].innerHTML = "Sub-Categoria ".concat((i + 2).toString(), ": ");
-            var index = 4 + i;
+            var index = 3 + i;
             table.children[0].insertBefore(newRow, table.children[0].children[index]);
-        }
-    }
-
-    function updateRemove() {
-        var bRemove = document.getElementById("remove").checked;
-        var table = document.getElementById("TabelaCategoria");
-        if (table.rows.length > 4) {
-            table.rows[2].style.display = bRemove ? 'none' : 'table-row';
-            table.rows[3].style.display = bRemove ? 'none' : 'table-row';
-            var index = 4;
-            var i = 0;
-            var firstRow = table.rows[index];
-            while (firstRow.className == "SubCat") {
-                firstRow.style.display = bRemove ? 'none' : 'table-row';
-                i++
-                if (table.rows.length < (index + i + 1)) break;
-                firstRow = table.rows[index + i];
-            }
         }
     }
 </script>

@@ -47,38 +47,6 @@
     </style>
 </head>
 
-<script>
-    function updateSec() {
-        var table = document.getElementById("TabelaProduto");
-        var nifRow = document.getElementById("PrimeiroNIFSecundario");
-        var nameRow = document.getElementById("PrimeiroNOMESecundario");
-        var numberOfSecs = document.getElementById("secondaryNumber").value;
-
-        var firstRow = table.rows[8];
-        while (firstRow.className == "FornecedorSec") {
-            table.deleteRow(8);
-            table.deleteRow(8);
-            firstRow = table.rows[8];
-        }
-
-        for (var i = 0; i < numberOfSecs - 1; ++i) {
-            var newRow = nifRow.cloneNode(true);
-            newRow.children[1].children[0].name = "FornecedorSecundarioNif".concat((i + 2).toString());
-            newRow.children[0].innerHTML = "NIF Fornecedor Secundario ".concat((i + 2).toString(), ": ");
-            var index = 8 + i * 2;
-            table.children[0].insertBefore(newRow, table.children[0].children[index]);
-
-            var newRow = nameRow.cloneNode(true);
-            newRow.children[1].children[0].name = "FornecedorSecundarioNome".concat((i + 2).toString());
-            newRow.children[0].innerHTML = "Nome Fornecedor Secundario ".concat((i + 2).toString(), ": ");
-            var index = 9 + i * 2;
-            table.children[0].insertBefore(newRow, table.children[0].children[index]);
-
-            console.log(newRow.children[1].children[0].name);
-        }
-    }
-</script>
-
 <body>
     <div id="Query2" class="Query" style="margin-left: auto; margin-right: auto; width: 50%; padding-top: 10%">
         <h3 style="text-align: center">Remover produto</h3>
