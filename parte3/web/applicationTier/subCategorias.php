@@ -1,4 +1,9 @@
 <html>
+<head>
+    <meta charset="utf-8">
+    <title> Projeto de BD </title>
+    <link rel="stylesheet" href="style.css">
+</head>
     <body>
 <?php
     function fetchSubCategory($superCategory,$db,$categoryList) {
@@ -31,8 +36,8 @@
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="istxxxxx";
-        $password = "xxxxxxx";
+        $user ="ist426019";
+        $password = "lvng0049";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -49,13 +54,15 @@
         }
         echo("</table>\n");
 
-
         $db = null;
+
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("rollback;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>
