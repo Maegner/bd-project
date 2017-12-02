@@ -152,7 +152,7 @@
 
         $db = null;
 
-        if(!hadProblem){
+        if(!$hadProblem){
             echo("<p>Insercao foi um sucesso</p>");
         }
         echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
