@@ -51,6 +51,7 @@
 
     if ($nomeCategoria == "") {
         echo("<p>NomeCategoria vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
