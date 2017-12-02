@@ -114,9 +114,7 @@ insert into Prateleira values('esquerdo',100,1);
 insert into Prateleira values('esquerdo',100,2);
 insert into Prateleira values('esquerdo',100,3);
 
-
-
-
-
-
+insert into Planograma values(1,100,'loc1','EAN00001','esquerdo',100,3);
+insert into Planograma values(1,100,'loc1','EAN00002','esquerdo',100,2);
+insert into Planograma values(1,100,'loc1','EAN00004','esquerdo',100,1);
 

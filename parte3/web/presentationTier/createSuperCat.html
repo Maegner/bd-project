@@ -1,120 +1,127 @@
 <html>
-    <script>
-        function updateCat() {
-            var table = document.getElementById("TabelaCategoria");
-            var catRow = document.getElementById("PrimeiraSub");
-            var numberOfSubs = document.getElementById("subNumber").value;
-            var bRemove = document.getElementById("remove");
-            
-            if (table.rows.length > 4) {
-                var firstRow = table.rows[4];
-                while (firstRow.className == "SubCat") {
-                    table.deleteRow(4);
-                    if (table.rows.length < 5) break;
-                    firstRow = table.rows[4];
-                }
-            }
+<script>
+    function updateCat() {
+        var table = document.getElementById("TabelaCategoria");
+        var catRow = document.getElementById("PrimeiraSub");
+        var numberOfSubs = document.getElementById("subNumber").value;
+        var bRemove = document.getElementById("remove");
 
-            for (var i = 0; i < numberOfSubs-1; ++i) { 
-                var newRow = catRow.cloneNode(true);
-                newRow.children[1].children[0].name = "SubCategoria".concat((i+2).toString());
-                newRow.children[0].innerHTML = "Sub-Categoria ".concat((i+2).toString(), ":");
-                var index = 4 + i;
-                table.children[0].insertBefore(newRow, table.children[0].children[index]);
+        if (table.rows.length > 4) {
+            var firstRow = table.rows[4];
+            while (firstRow.className == "SubCat") {
+                table.deleteRow(4);
+                if (table.rows.length < 5) break;
+                firstRow = table.rows[4];
             }
         }
 
-        function updateRemove() {
-            var bRemove = document.getElementById("remove").checked;
-            var table = document.getElementById("TabelaCategoria");
-            if (table.rows.length > 4) {
-                table.rows[2].style.display = bRemove ? 'none' : 'table-row';
-                table.rows[3].style.display = bRemove ? 'none' : 'table-row';
-                var index = 4;
-                var i = 0;
-                var firstRow = table.rows[index];
-                while (firstRow.className == "SubCat") {
-                    firstRow.style.display = bRemove ? 'none' : 'table-row';
-                    i++
-                    if (table.rows.length < (index+i+1)) break;
-                    firstRow = table.rows[index+i];
-                }
+        for (var i = 0; i < numberOfSubs - 1; ++i) {
+            var newRow = catRow.cloneNode(true);
+            newRow.children[1].children[0].name = "SubCategoria".concat((i + 2).toString());
+            newRow.children[0].innerHTML = "Sub-Categoria ".concat((i + 2).toString(), ": ");
+            var index = 4 + i;
+            table.children[0].insertBefore(newRow, table.children[0].children[index]);
+        }
+    }
+
+    function updateRemove() {
+        var bRemove = document.getElementById("remove").checked;
+        var table = document.getElementById("TabelaCategoria");
+        if (table.rows.length > 4) {
+            table.rows[2].style.display = bRemove ? 'none' : 'table-row';
+            table.rows[3].style.display = bRemove ? 'none' : 'table-row';
+            var index = 4;
+            var i = 0;
+            var firstRow = table.rows[index];
+            while (firstRow.className == "SubCat") {
+                firstRow.style.display = bRemove ? 'none' : 'table-row';
+                i++
+                if (table.rows.length < (index + i + 1)) break;
+                firstRow = table.rows[index + i];
             }
         }
-    </script>
+    }
+</script>
 
-        <head>
-            <meta charset="utf-8">
-            <title> Projeto de BD </title>
-            <link rel="stylesheet" href="style.css">
-                    <link rel="stylesheet" href="style.css">
-        <!-- load Ink's CSS -->
-        <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
-        <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
+<head>
+    <meta charset="utf-8">
+    <title> Projeto de BD </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- load Ink's CSS -->
+    <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
 
-        <!-- load Ink's CSS for IE8 -->
-        <!--[if lt IE 9 ]>
+    <!-- load Ink's CSS for IE8 -->
+    <!--[if lt IE 9 ]>
             <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
-        <!-- test browser flexbox support and load legacy grid if unsupported -->
-        <script type="text/javascript" src="../ink/js/modernizr.js"></script>
-        <script type="text/javascript">
-            Modernizr.load({
-              test: Modernizr.flexbox,
-              nope : '../ink/css/ink-legacy.min.css'
-            });
-        </script>
+    <!-- test browser flexbox support and load legacy grid if unsupported -->
+    <script type="text/javascript" src="../ink/js/modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+            test: Modernizr.flexbox,
+            nope: '../ink/css/ink-legacy.min.css'
+        });
+    </script>
 
-        <!-- load Ink's javascript files -->
-        <script type="text/javascript" src="../ink/js/holder.js"></script>
-        <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="../ink/js/autoload.js"></script>
+    <!-- load Ink's javascript files -->
+    <script type="text/javascript" src="../ink/js/holder.js"></script>
+    <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../ink/js/autoload.js"></script>
 
-        <style type="text/css">
-
-            body {
-                background: #ededed;
-            }
-
-            header {
-                border-bottom: 1px solid #cecece;
-            }
-
-            footer {
-                background: #ccc;
-            }
-
-        </style>
-     <link rel="stylesheet" href="style.css">
-        </head>
+    <style type="text/css">
+        body {
+            background: #ededed;
+            background-image: url("../servers.jpg")
+        }
         
-        <body>
-            <!--Provavelmente separar o criar do remover era boa ideia-->
-            <!--Adicionar e remover categorias-->
-            <div id = "Query1" class = "Query" style="float:left">
-                <h3 style="text-align: center">Adicionar ou remover categoria</h3>
+        header {
+            border-bottom: 1px solid #cecece;
+        }
+        
+        footer {
+            background: #ccc;
+        }
+        
+        .inputColumn {
+            text-align: left;
+            padding-left: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-                <form action="../applicationTier/superCategoria.php" method="post">
-                    <table id="TabelaCategoria" style="text-align: right; width: 450px;">
-                        <tr>
-                            <td>Super categoria: </td>
-                            <td class="inputColumn"><input type="text" name="NomeCategoria"/></td> 
-                        </tr>
-                        <tr>
-                            <td>Número de sub-categorias: </td>
-                            <td class="inputColumn"><input type="number" name="SubCategorias" min="1" onchange="updateCat()" id="subNumber"></td>   
-                        </tr>
-                        <tr id="PrimeiraSub" class="SubCat">
-                            <td>Sub-Categoria 1:</td>
-                            <td class="inputColumn"><input type="text" name="SubCategoria1" /></td> 
-                        </tr>
-                    </table>
-                    <p style="width:100px; margin-left:auto; margin-right:auto;"> <input class="ink-button green" type="submit" value="Submit"/> </p>
-                </form>
-            </div>
-            <button class="ink-button orange" onclick="window.history.back()" style="float:left; clear:both">
-                Voltar
-            </button>
-        </body>
-    </html>
+<body>
+    <!--Provavelmente separar o criar do remover era boa ideia-->
+    <!--Adicionar e remover categorias-->
+    <div id="Query1" class="Query" style="margin-left: auto; margin-right: auto; width: 50%; padding-top: 10%">
+        <h3 style="text-align: center">Adicionar super categoria</h3>
+
+        <form action="../applicationTier/superCategoria.php" method="post">
+            <table id="TabelaCategoria" style="text-align: right; margin-left: auto; margin-right: auto;">
+                <tr>
+                    <td>Super categoria: </td>
+                    <td class="inputColumn"><input type="text" name="NomeCategoria" /></td>
+                </tr>
+                <tr>
+                    <td>Número de sub-categorias: </td>
+                    <td class="inputColumn"><input type="number" name="SubCategorias" min="1" onchange="updateCat()" id="subNumber"></td>
+                </tr>
+                <tr id="PrimeiraSub" class="SubCat">
+                    <td>Sub-Categoria 1: </td>
+                    <td class="inputColumn"><input type="text" name="SubCategoria1" /></td>
+                </tr>
+            </table>
+            <p style="width:100px; margin-left:auto; margin-right:auto;"> <input class="ink-button green" type="submit" value="Submit" /> </p>
+        </form>
+    </div>
+    <div style="margin-left:auto; margin-right: auto; width: 5%;">
+        <button class="ink-button orange" onclick="window.history.back()" style="font-size: 120%">
+            Voltar
+        </button>
+    </div>
+</body>
+
+</html>
