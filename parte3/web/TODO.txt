@@ -1,4 +1,0 @@
-Verificacoes na inserção de dados, se inserir Strings onde nao devo, deve ser verificado no php;
-Listar sub-categorias não funciona;
-
-NOVO: Verificar rollbacks

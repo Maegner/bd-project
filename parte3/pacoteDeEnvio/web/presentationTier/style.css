@@ -1,0 +1,39 @@
+.mainMenuButtons {
+    font-size: 40px;
+}
+
+#container {
+    margin-top: 20%;
+    text-align: center;
+}
+
+.center {
+    margin: auto;
+}
+
+.left {
+    margin: auto auto auto 0;
+}
+
+.right {
+    margin: auto 0 auto auto;
+}
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.inputColumn {
+    text-align: left;
+}
+
+
+/*
+.Query {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+*/
