@@ -86,8 +86,7 @@ CREATE TABLE Planograma(
     altura INT NOT NULL,
     FOREIGN KEY(nro) REFERENCES Corredor,
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
-    FOREIGN KEY(lado,altura) REFERENCES Prateleira,
-    CHECK(unidades >= 0)
+    FOREIGN KEY(lado,altura) REFERENCES Prateleira
 );
 
 CREATE TABLE EventoReposicao(
@@ -108,8 +107,11 @@ CREATE TABLE Reposicao(
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
     FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,
-    CHECK(unidades >= 0)
+    CHECK(unidades > 0)
 );
 
 ALTER TABLE EventoReposicao
    ADD CONSTRAINT RI_EA3 CHECK(instante <= CURRENT_TIMESTAMP);
+
+ALTER TABLE Planograma ADD CONSTRAINT 
+TIPOLADO CHECK (lado = 'esquerdo' OR lado = 'direito');
