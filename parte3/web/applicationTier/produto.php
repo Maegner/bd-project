@@ -31,6 +31,7 @@
         }
 
         catch(PDOException $e){
+            $db->query("ROLLBACK;");
             echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
         }
     }
@@ -41,7 +42,9 @@
         $position = 0;
 
         if(count($sups) != count($noms) or count($sups) == 0 ){
+            $db->query("ROLLBACK;");
             echo("<p>ERROR: Insert the correct number of names and nifs</p>");
+            return;
         }
 
         foreach($sups as $suplier){
@@ -85,23 +88,28 @@
     $secundarios = $_REQUEST['FornecedoresSecundarios'];
 
     if ($ean == "") {
-        echo("<p>EAN vazio<p>");
+        echo("<p>[ERRO] EAN vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($designacao == "") {
-        echo("<p>Designacao vazio<p>");
+        echo("<p> [ERRO] Designacao vazia<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($categoria == "") {
-        echo("<p>Categoria vazio<p>");
+        echo("<p> [ERRO] Categoria vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($primarioNif == "") {
-        echo("<p>FornecedorPrimarioNif vazio<p>");
+        echo("<p>[ERRO] FornecedorPrimarioNif vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     if ($primarioNome == "") {
-        echo("<p>FornecedorPrimarioNome vazio<p>");
+        echo("<p>[ERRO]FornecedorPrimarioNome vazio<p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
  
@@ -119,6 +127,11 @@
             array_push($secundarySuppliersNif,$value);   
         }
     }
+    if(count($secundarySuppliersNif) == 0){
+        echo("<p>[ERRO] Insira pelo menos um fornecedor secundario diferente do primario</p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        return;
+    }
     
     $i = 1;
     $secundarySuppliersName = array();
@@ -132,26 +145,38 @@
         }
     }
 
+    if(count($secundarySuppliersNome) != count($secundarySuppliersNif)){
+        echo("<p>[ERRO] Insira a mesma quantidade de nomes e de nifs</p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        return; 
+    }
+
     if(!isRealDate($data)){
-        echo("<p>ERROR: date inserted is not valid please insert in format YYYY-MM-DD</p>");
+        echo("<p>[ERRO] Data inserida nao valida</p>");
+        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        return;
     }
 
     else {
         try {
             $host = "db.ist.utl.pt";
-            $user ="ist426019";
-            $password = "lvng0049";
+            $user ="ist426018";
+            $password = "fcgs5019";
             $dbname = $user;
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+            
+            $db->query("START TRANSACTION;");
+
             postProduct($ean,$designacao,$categoria,$primarioNif,$primarioNome,$secundarySuppliersNif,$secundarySuppliersName,$data,$db);
-    
+            
+            $db->query("COMMIT;");
             $db = null;
             echo("<p>Insercao foi um sucesso</p>");
             echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         }
         catch (Exception $e) {
+            $db->query("ROLLBACK;");
             echo("<p>ERROR GeneralArea: {$e->getMessage()}</p>");
             echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         }
