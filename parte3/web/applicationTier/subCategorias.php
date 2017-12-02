@@ -67,7 +67,7 @@
     $superCat = $_REQUEST['SuperCategoria'];
 
     if ($superCat == "") {
-        echo("<p>[ERROR] SuperCategoria vazio<p>");
+        echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERROR] SuperCategoria vazio</p> </div>");
         echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -85,7 +85,7 @@
         $result = $db->query($exists);
         
                 if($result->rowCount()==0){
-                    echo("<p>[ERRO] Nao existe super categoria com o nome especificado<p>");
+                    echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] Nao existe super categoria com o nome especificad0</p> </div>");
                     echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
                     return;
                 } 

@@ -67,7 +67,7 @@
         $result = $db->query($sql);
 
         if($result->rowCount()==0){
-            echo ("<div class=\"ink-alert basic\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] Nenhuma reposicao encontrada para o produto com EAN = {$ean}</p> </div>");
+            echo ("<div class=\"ink-alert error\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] Nenhuma reposicao encontrada para o produto com EAN = {$ean}</p> </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
