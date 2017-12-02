@@ -68,15 +68,15 @@
 
     if ($superCat == "") {
         echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERROR] SuperCategoria vazio</p> </div>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="ist426018";
-        $password = "fcgs5019";
+        $user ="ist426019";
+        $password = "lvng0049";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -85,8 +85,8 @@
         $result = $db->query($exists);
         
                 if($result->rowCount()==0){
-                    echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] Nao existe super categoria com o nome especificad0</p> </div>");
-                    echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+                    echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] Nao existe super categoria com o nome especificado</p> </div>");
+                    echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
                     return;
                 } 
 
@@ -104,12 +104,12 @@
 
         $db = null;
 
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         echo("<p>ERROR: {$e->getMessage()}</p>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>

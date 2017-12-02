@@ -105,8 +105,8 @@
     $nameSuper = $_REQUEST['NomeCategoria'];
 
     if ($nameSuper == "") {
-        echo("<p> [ERRO] NomeCategoria vazio<p>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo ("<div class=\"ink-alert error\" role=\"alert\"><p><b>Warning:</b> <p>[ERRO] NomeCategoria vazio</p> </div>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -124,7 +124,7 @@
     }
     if(count($subCats) == 0){
         echo("<p> [ERRO] Insira sub categorias validas");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -142,7 +142,7 @@
         if(doesCatExist($nameSuper,$db)){
             $db->query("ROLLBACK;");
             echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
-            echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
 
@@ -153,15 +153,15 @@
         $db = null;
 
         if(!hadProblem){
-            echo("<p>Insercao foi um sucesso</p>");
+            echo ("<div class=\"ink-alert success\" role=\"alert\"><p><b>Sucesso:</b> <p>Insercao foi um sucesso</p> </div>");
         }
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>

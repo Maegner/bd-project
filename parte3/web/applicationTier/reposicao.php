@@ -48,7 +48,7 @@
     $ean = $_REQUEST['EAN_Reposicao'];
 
     if ($ean == "") {
-        echo("<p>[ERRO] EAN vazio<p>");
+        echo ("<div class=\"ink-alert error\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] EAN vazio</p> </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -56,8 +56,8 @@
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="ist426018";
-        $password = "fcgs5019";
+        $user ="ist426019";
+        $password = "lvng0049";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
