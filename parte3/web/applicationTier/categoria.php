@@ -25,15 +25,18 @@
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="ist426019";
-        $password = "lvng0049";
+        $user ="ist426018";
+        $password = "fcgs5019";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        $db->query("START TRANSACTION;");
+
         if(exists($nomeCategoria,$db)){
             echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
-            echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");1
+            echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            $db->query("ROLLBACK;");
             return;
         }
 
@@ -42,7 +45,11 @@
 
         $db->query($sql);
 
-        $db->query("commit;");
+        $sql = "INSERT INTO Categoria_Simples VALUES('$nomeCategoria');";
+        
+        $db->query($sql);
+
+        $db->query("COMMIT;");
 
         $db = null;
 
@@ -51,7 +58,7 @@
     }
     catch (PDOException $e)
     {
-        #$db->query("rollback;");
+        $db->query("ROLLBACK;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
