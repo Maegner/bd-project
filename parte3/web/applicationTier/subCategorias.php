@@ -23,6 +23,11 @@
 
     $superCat = $_REQUEST['SuperCategoria'];
 
+    if ($superCat == "") {
+        echo("<p>SuperCategoria vazio<p>");
+        return;
+    }
+
     try
     {
         $host = "db.ist.utl.pt";

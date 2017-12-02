@@ -31,8 +31,8 @@ CREATE TABLE Constituida(
     super_categoria VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     PRIMARY KEY(super_categoria,categoria),
-    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome),
-    FOREIGN KEY (categoria) REFERENCES Categoria(nome)
+    FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome) ON DELETE CASCADE,
+    FOREIGN KEY (categoria) REFERENCES Categoria(nome) ON DELETE CASCADE
 );
 
 CREATE TABLE Fornecedor(
@@ -48,15 +48,15 @@ CREATE TABLE Produto(
     design VARCHAR(50),
     data DATE,
     PRIMARY KEY (ean),
-    FOREIGN KEY(categoria) REFERENCES Categoria,
+    FOREIGN KEY(categoria) REFERENCES Categoria ON DELETE CASCADE,
     FOREIGN KEY(forn_primario) REFERENCES Fornecedor
 );
 
 CREATE TABLE Fornecedor_secundario(
     nif VARCHAR(9) NOT NULL,
     ean VARCHAR(25),
-    FOREIGN KEY(nif) REFERENCES Fornecedor(nif) ON DELETE CASCADE,
-    FOREIGN KEY(ean) REFERENCES Produto(ean)
+    FOREIGN KEY(nif) REFERENCES Fornecedor(nif),
+    FOREIGN KEY(ean) REFERENCES Produto(ean) ON DELETE CASCADE
 );
 
 CREATE TABLE Corredor(
@@ -104,7 +104,7 @@ CREATE TABLE Reposicao(
     lado VARCHAR(8) NOT NULL,
     operador VARCHAR(25) NOT NULL,
     instante TIMESTAMP NOT NULL,
-    FOREIGN KEY(nro) REFERENCES Corredor,
+    FOREIGN KEY(nro) REFERENCES Corredor, 
     FOREIGN KEY(ean) REFERENCES Produto ON DELETE CASCADE,
     FOREIGN KEY(lado,altura) REFERENCES Prateleira,
     FOREIGN KEY(operador,instante) REFERENCES EventoReposicao,

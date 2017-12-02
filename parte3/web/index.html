@@ -21,17 +21,24 @@
         function changeToChangeProd(){
             window.location.href = "./presentationTier/changeProdPresentation.html";
         }
+        function changeToDeleteCat(){
+            window.location.href = "./presentationTier/deleteCat.html";
+        }
+        function changeToDeleteProd(){
+            window.location.href = "./presentationTier/deleteProduct.html";
+        }
     </script>
-    <div id = "container">
-        <button id ="createProd" class = "mainMenuButtons left" onclick="changeToCreateProd()" > Criar Produto </button>
-        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToCreateProd()" > Remover Produto </button>
-        <button id ="changeProd" class = "mainMenuButtons right"onclick="changeToChangeProd()" > Alterar designação </button>
+    <div id = "container" style="width: 75%; margin-left: auto; margin-right: auto">
+        
+        <button id ="createProd" class = "mainMenuButtons left" onclick="changeToCreateProd()" style="margin: 15px; padding: 10px"> Criar Produto </button>
+        <button id ="createProd" class = "mainMenuButtons center" onclick="changeToDeleteProd()" style="margin: 15px; padding: 10px"> Remover Produto </button>
+        <button id ="changeProd" class = "mainMenuButtons right"onclick="changeToChangeProd()" style="margin: 15px; padding: 10px"> Alterar designação </button>
 
-        <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" > Criar Categoria </button>
-        <button id ="createCat" class = "mainMenuButtons center " onclick="changeToCreateCat()" > Remover Categoria </button>
-        <button id ="listSubCat" class = "mainMenuButtons right"onclick="changeTolistSubCat()" > Listar Sub-Categorias </button>
+        <button id ="createCat" class = "mainMenuButtons left " onclick="changeToCreateCat()" style="margin: 15px; padding: 10px"> Criar Categoria </button>
+        <button id ="createCat" class = "mainMenuButtons center " onclick="changeToDeleteCat()" style="margin: 15px; padding: 10px"> Remover Categoria </button>
+        <button id ="listSubCat" class = "mainMenuButtons right"onclick="changeTolistSubCat()" style="margin: 15px; padding: 10px"> Listar Sub-Categorias </button>
 
-        <button id ="listRep" class = "mainMenuButtons center" onclick="changeTolistRep()" > Listar Reposições </button>
+        <button id ="listRep" class = "mainMenuButtons center" onclick="changeTolistRep()" style="margin: 15px; padding: 10px"> Listar Reposições </button>
     </div>
 
 </html>
