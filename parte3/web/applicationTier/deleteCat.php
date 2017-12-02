@@ -110,6 +110,17 @@
 
         isInSuperCat($nomeCategoria,$db);
 
+        $exists = "SELECT FROM Categoria WHERE nome = '$nomeCategoria';";
+        $result = $db->query($exists);
+
+        if($result->rowCount()==0){
+            $rollback = "ROLLBACK;";
+            doQuery($rollback,$db);
+            echo("<p>[ERRO] Nao existe categoria com o nome especificado<p>");
+            echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            return;
+        }
+
         $delCat = "DELETE FROM Categoria WHERE nome = '$nomeCategoria';";
         doQuery($delCat,$db);
 
