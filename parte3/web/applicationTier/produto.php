@@ -7,6 +7,8 @@
     <body>
 <?php
 
+    $hadProblem = false;
+
     function isRealDate($date) { 
         if (false === strtotime($date)) { 
             return false;
@@ -31,6 +33,7 @@
         }
 
         catch(PDOException $e){
+            $hadProblem = true;
             $db->query("ROLLBACK;");
             echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
         }
@@ -42,6 +45,7 @@
         $position = 0;
 
         if(count($sups) != count($noms) or count($sups) == 0 ){
+            $hadProblem = true;
             $db->query("ROLLBACK;");
             echo("<p>ERROR: Insert the correct number of names and nifs</p>");
             return;
@@ -172,7 +176,9 @@
             
             $db->query("COMMIT;");
             $db = null;
-            echo("<p>Insercao foi um sucesso</p>");
+            if (!$hadProblem){
+                echo("<p>Insercao foi um sucesso</p>");
+            }
             echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         }
         catch (Exception $e) {
