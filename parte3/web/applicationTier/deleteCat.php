@@ -110,7 +110,7 @@
 
         isInSuperCat($nomeCategoria,$db);
 
-        $exists = "SELECT FROM Categoria WHERE ean = '$nomeCategoria';";
+        $exists = "SELECT FROM Categoria WHERE nome = '$nomeCategoria';";
         $result = $db->query($exists);
 
         if($result->rowCount()==0){
