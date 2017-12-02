@@ -232,8 +232,8 @@
     else {
         try {
             $host = "db.ist.utl.pt";
-            $user ="ist426018";
-            $password = "fcgs5019";
+            $user ="istxxxxxx";
+            $password = "xxxxx";
             $dbname = $user;
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
