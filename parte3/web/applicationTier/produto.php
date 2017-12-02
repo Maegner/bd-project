@@ -47,6 +47,16 @@
 
     $hadProblem = false;
 
+    function doesCatExist($catName,$database){
+        $sql = "SELECT * FROM Categoria WHERE nome = '$catName';";
+        $result = $database->query($sql);
+
+        if(($result->rowCount()==0)){
+            return false;
+        }
+        return true;
+    }
+
     function isRealDate($date) { 
         if (false === strtotime($date)) { 
             return false;
@@ -224,6 +234,15 @@
         echo("<div class=\"ink-alert basic error\" role=\"alert\">
         <button class=\"ink-dismiss\">&times;</button>
         <p><b>Erro:</b>[ERRO] Data inserida nao valida</p>
+        </div>");
+        echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        return;
+    }
+
+    if(!doesCatExist($categoria,$db)){
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] Categoria inserida nao existe</p>
         </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
