@@ -75,6 +75,12 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        if(doesCatExist($nameSuper,$db)){
+            echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
+            echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            return;
+        }
+
         postSuperCat($nameSuper,$subCats,$db);
 
         $db = null;

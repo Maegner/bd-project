@@ -19,6 +19,34 @@
         }
     }
 
+    function isNewSimple($name,$db){
+        $sql = "SELECT * FROM Constituida where super_categoria = '$name';";
+        $result = $db->query($sql);
+        if($result->rowCount()==1){
+            return true;
+        }
+        return false;
+    }
+
+    function changeToSimple($name,$db){
+        $sql = "DELETE FROM Constituida WHERE super_categoria = '$name';";
+        doQuery($sql,$db);
+        $sql = "DELETE FROM Super_Categoria WHERE nome = '$name';";
+        doQuery($sql,$db);
+        $sql = "INSERT INTO Categoria_Simples VALUES('$name');";
+        doQuery($sql,$db);
+    }
+
+    function isInSuperCat($name,$db){
+        $sql = "SELECT * FROM Constituida where categoria = '$name';";
+        $result = $db->query($sql);
+        foreach($result as $row){
+            if(isNewSimple($row['super_categoria'],$db)){
+                changeToSimple($row['super_categoria'],$db);
+            }
+        }
+    }
+
     $nomeCategoria = $_REQUEST['NomeCategoria'];
 
     if ($nomeCategoria == "") {
@@ -29,14 +57,16 @@
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="ist426019";
-        $password = "lvng0049";
+        $user ="ist426018";
+        $password = "fcgs5019";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $start = "START TRANSACTION;";
         doQuery($start,$db);
+
+        isInSuperCat($nomeCategoria,$db);
 
         $delCat = "DELETE FROM Categoria WHERE nome = '$nomeCategoria';";
         doQuery($delCat,$db);
