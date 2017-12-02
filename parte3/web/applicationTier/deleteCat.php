@@ -56,7 +56,10 @@
             $hadProblem = true;
             $rollback = "ROLLBACK;";
             doQuery($rollback,$db);
-            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>ERROR In Query({$query}): {$e->getMessage()}</p>
+            </div>");
         }
     }
 
@@ -91,7 +94,11 @@
     $nomeCategoria = $_REQUEST['NomeCategoria'];
 
     if ($nomeCategoria == "") {
-        echo("<p>NomeCategoria vazio<p>");
+
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>NomeCategoria vazio</p>
+        </div>");
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -116,7 +123,10 @@
         if($result->rowCount()==0){
             $rollback = "ROLLBACK;";
             doQuery($rollback,$db);
-            echo("<p>[ERRO] Nao existe categoria com o nome especificado<p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>[ERRO] Nao existe categoria com o nome especificado</p>
+            </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
@@ -129,7 +139,10 @@
 
         $db = null;
         if(!$hadProblem){
-            echo("<p> Remoção efectuada com sucesso </p>");
+            echo("<div class=\"ink-alert basic success\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Sucesso:</b>Remoção efectuada com sucesso</p>
+            </div>");
         }
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
@@ -137,7 +150,10 @@
     {
         $rollback = "ROLLBACK;";
         doQuery($rollback,$db);
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>ERROR: {$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>

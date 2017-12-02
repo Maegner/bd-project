@@ -64,7 +64,10 @@
 
         catch(PDOException $e){
             $hadProblem = true;
-            echo("<p>ERROR In Query({$query}): {$e->getMessage()}</p>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b> ERROR In Query({$query}): {$e->getMessage()}</p>
+            </div>");
             $db->query("ROLLBACK;");
             return false;
         }
@@ -105,8 +108,11 @@
     $nameSuper = $_REQUEST['NomeCategoria'];
 
     if ($nameSuper == "") {
-        echo("<p> [ERRO] NomeCategoria vazio<p>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> [ERRO] NomeCategoria vazio</p>
+        </div>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -123,8 +129,11 @@
         }
     }
     if(count($subCats) == 0){
-        echo("<p> [ERRO] Insira sub categorias validas");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> [ERRO] Insira sub categorias validas</p>
+        </div>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -141,8 +150,11 @@
 
         if(doesCatExist($nameSuper,$db)){
             $db->query("ROLLBACK;");
-            echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
-            echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b> [ERRO] A categoria que pertende inserir ja existe</p>
+            </div>");
+            echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
 
@@ -153,15 +165,21 @@
         $db = null;
 
         if(!$hadProblem){
-            echo("<p>Insercao foi um sucesso</p>");
+            echo("<div class=\"ink-alert basic success\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Sucesso:</b> Insercao foi um sucesso</p>
+            </div>");
         }
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
-        echo("<p>ERROR: {$e->getMessage()}</p>");
-        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b> ERROR: {$e->getMessage()}</p>
+        </div>");
+        echo("<button class=\"ink-button orange\"  onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>

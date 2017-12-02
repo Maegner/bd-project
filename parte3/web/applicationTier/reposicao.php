@@ -48,7 +48,10 @@
     $ean = $_REQUEST['EAN_Reposicao'];
 
     if ($ean == "") {
-        echo("<p>[ERRO] EAN vazio<p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>[ERRO] EAN vazio</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -56,8 +59,8 @@
     try
     {
         $host = "db.ist.utl.pt";
-        $user ="ist426018";
-        $password = "fcgs5019";
+        $user ="ist426019";
+        $password = "lvng0049";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -67,7 +70,10 @@
         $result = $db->query($sql);
 
         if($result->rowCount()==0){
-            echo ("<div class=\"ink-alert error\" role=\"alert\"><button class=\"ink-dismiss\">&times;</button><p><b>Warning:</b> <p>[ERRO] Nenhuma reposicao encontrada para o produto com EAN = {$ean}</p> </div>");
+            echo("<div class=\"ink-alert basic error\" role=\"alert\">
+            <button class=\"ink-dismiss\">&times;</button>
+            <p><b>Erro:</b>[ERRO] Nenhuma reposicao encontrada para o produto com EAN = {$ean}</p>
+            </div>");
             echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
@@ -93,7 +99,10 @@
     }
     catch (PDOException $e)
     {
-        echo("<p>ERROR: {$e->getMessage()}</p>");
+        echo("<div class=\"ink-alert basic error\" role=\"alert\">
+        <button class=\"ink-dismiss\">&times;</button>
+        <p><b>Erro:</b>ERROR: {$e->getMessage()}</p>
+        </div>");
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
