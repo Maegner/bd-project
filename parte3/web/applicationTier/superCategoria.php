@@ -3,6 +3,44 @@
     <meta charset="utf-8">
     <title> Projeto de BD </title>
     <link rel="stylesheet" href="style.css">
+                        <!-- load Ink's CSS -->
+                        <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
+
+    <!-- load Ink's CSS for IE8 -->
+    <!--[if lt IE 9 ]>
+        <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- test browser flexbox support and load legacy grid if unsupported -->
+    <script type="text/javascript" src="../ink/js/modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+          test: Modernizr.flexbox,
+          nope : '../ink/css/ink-legacy.min.css'
+        });
+    </script>
+
+    <!-- load Ink's javascript files -->
+    <script type="text/javascript" src="../ink/js/holder.js"></script>
+    <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../ink/js/autoload.js"></script>
+
+    <style type="text/css">
+
+        body {
+            background: #ededed;
+        }
+
+        header {
+            border-bottom: 1px solid #cecece;
+        }
+
+        footer {
+            background: #ccc;
+        }
+
+    </style>
 </head>
     <body>
 <?php
@@ -68,7 +106,7 @@
 
     if ($nameSuper == "") {
         echo("<p> [ERRO] NomeCategoria vazio<p>");
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -86,7 +124,7 @@
     }
     if(count($subCats) == 0){
         echo("<p> [ERRO] Insira sub categorias validas");
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
 
@@ -104,7 +142,7 @@
         if(doesCatExist($nameSuper,$db)){
             $db->query("ROLLBACK;");
             echo("<p>[ERRO] A categoria que pertende inserir ja existe</p>");
-            echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+            echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
             return;
         }
 
@@ -117,13 +155,13 @@
         if(!hadProblem){
             echo("<p>Insercao foi um sucesso</p>");
         }
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         $db->query("ROLLBACK;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-table alternating\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>

@@ -41,7 +41,7 @@
         }
 
     </style>
-    
+
 </head>
     <body>
 <?php
@@ -49,7 +49,7 @@
 
     if ($ean == "") {
         echo("<p>[ERRO] EAN vazio<p>");
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
     
@@ -89,12 +89,12 @@
 
         $db = null;
 
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
     catch (PDOException $e)
     {
         echo("<p>ERROR: {$e->getMessage()}</p>");
-        echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+        echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
 ?>
     </body>
