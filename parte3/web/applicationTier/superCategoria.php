@@ -165,6 +165,7 @@
         $db = null;
 
         if(!hadProblem){
+            echo('asddasdas');
             echo("<div class=\"ink-alert basic success\" role=\"alert\">
             <button class=\"ink-dismiss\">&times;</button>
             <p><b>Sucesso:</b> Insercao foi um sucesso</p>
