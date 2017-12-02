@@ -29,7 +29,7 @@
     $superCat = $_REQUEST['SuperCategoria'];
 
     if ($superCat == "") {
-        echo("<p>SuperCategoria vazio<p>");
+        echo("<p>[ERROR] SuperCategoria vazio<p>");
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
@@ -42,6 +42,15 @@
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $exists = "SELECT * FROM Super_Categoria WHERE nome = '$superCat';";
+        $result = $db->query($exists);
+        
+                if($result->rowCount()==0){
+                    echo("<p>[ERRO] Nao existe super categoria com o nome especificado<p>");
+                    echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
+                    return;
+                } 
 
         $categoryList = new SplDoublyLinkedList();
         $categoryList = fetchSubCategory($superCat,$db,$categoryList);
@@ -61,7 +70,6 @@
     }
     catch (PDOException $e)
     {
-        $db->query("rollback;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
         echo("<button onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
     }
