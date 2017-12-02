@@ -18,26 +18,27 @@ CREATE TABLE Categoria(
 );
 
 CREATE TABLE Categoria_Simples(
-    nome VARCHAR(50) NOT NULL UNIQUE,
+    nome VARCHAR(50) NOT NULL,
+    PRIMARY KEY(nome),
     FOREIGN KEY (nome) REFERENCES Categoria ON DELETE CASCADE
 );
 
 CREATE TABLE Super_Categoria(
-    nome VARCHAR(50) NOT NULL UNIQUE,
+    nome VARCHAR(50) NOT NULL,
+    PRIMARY KEY(nome),
     FOREIGN KEY (nome) REFERENCES Categoria ON DELETE CASCADE
 );
 
 CREATE TABLE Constituida(
     super_categoria VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
-    PRIMARY KEY(super_categoria,categoria),
     FOREIGN KEY (super_categoria) REFERENCES Super_Categoria(nome) ON DELETE CASCADE,
     FOREIGN KEY (categoria) REFERENCES Categoria(nome) ON DELETE CASCADE
 );
 
 CREATE TABLE Fornecedor(
     nif VARCHAR(9) NOT NULL,
-    nome VARCHAR(25),
+    nome VARCHAR(25) NOT NULL,
     PRIMARY KEY (nif)
 );
 
@@ -45,8 +46,8 @@ CREATE TABLE Produto(
     ean VARCHAR(25) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     forn_primario VARCHAR(9) NOT NULL,    
-    design VARCHAR(50),
-    data DATE,
+    design VARCHAR(50) NOT NULL,
+    data DATE NOT NULL,
     PRIMARY KEY (ean),
     FOREIGN KEY(categoria) REFERENCES Categoria ON DELETE CASCADE,
     FOREIGN KEY(forn_primario) REFERENCES Fornecedor
@@ -54,7 +55,7 @@ CREATE TABLE Produto(
 
 CREATE TABLE Fornecedor_secundario(
     nif VARCHAR(9) NOT NULL,
-    ean VARCHAR(25),
+    ean VARCHAR(25) NOT NULL,
     FOREIGN KEY(nif) REFERENCES Fornecedor(nif),
     FOREIGN KEY(ean) REFERENCES Produto(ean) ON DELETE CASCADE
 );
@@ -63,8 +64,8 @@ CREATE TABLE Corredor(
     nro INT NOT NULL,
     largura INT NOT NULL,
     PRIMARY KEY(nro),
-    check(largura >= 0),
-    check(nro >= 0)
+    check(largura > 0),
+    check(nro > 0)
 );
 
 CREATE TABLE Prateleira(
@@ -73,12 +74,12 @@ CREATE TABLE Prateleira(
     nro INT NOT NULL,
     PRIMARY KEY(lado,altura),
     FOREIGN KEY(nro) REFERENCES Corredor,
-    CHECK(altura >= 0)
+    CHECK(altura > 0)
 );
 
 CREATE TABLE Planograma(
     face VARCHAR(5) NOT NULL,
-    unidades INT NOT NULL
+    unidades INT NOT NULL,
     localizacao VARCHAR(10) NOT NULL,
     nro INT NOT NULL,
     ean VARCHAR(25) NOT NULL ,
@@ -113,5 +114,5 @@ CREATE TABLE Reposicao(
 ALTER TABLE EventoReposicao
    ADD CONSTRAINT RI_EA3 CHECK(instante <= CURRENT_TIMESTAMP);
 
-ALTER TABLE Planograma ADD CONSTRAINT 
-TIPOLADO CHECK (lado = 'esquerdo' OR lado = 'direito');
+ALTER TABLE Prateleira 
+    ADD CONSTRAINT TIPOLADO CHECK (lado = 'esquerdo' OR lado = 'direito');
