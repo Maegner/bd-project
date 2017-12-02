@@ -26,14 +26,14 @@ insert into Constituida values('Categoria5','Categoria2');
 insert into Constituida values('Categoria6','Categoria3');
 insert into Constituida values('Categoria7','Categoria4');
 
-insert into Produto values('EAN00001','Categoria1','000000001','design');
-insert into Produto values('EAN00002','Categoria2','000000001','design');
-insert into Produto values('EAN00003','Categoria3','000000001','design');
-insert into Produto values('EAN00004','Categoria4','000000001','design');
-insert into Produto values('EAN00005','Categoria5','000000001','design');
-insert into Produto values('EAN00006','Categoria6','000000001','design');
-insert into Produto values('EAN00007','Categoria7','000000001','design');
-insert into Produto values('EAN00008','Categoria1','000000002','design');
+insert into Produto values('EAN00001','Categoria1','000000001','design','01-01-2012');
+insert into Produto values('EAN00002','Categoria2','000000001','design','01-01-2012');
+insert into Produto values('EAN00003','Categoria3','000000001','design','01-01-2012');
+insert into Produto values('EAN00004','Categoria4','000000001','design','01-01-2012');
+insert into Produto values('EAN00005','Categoria5','000000001','design','01-01-2012');
+insert into Produto values('EAN00006','Categoria6','000000001','design','01-01-2012');
+insert into Produto values('EAN00007','Categoria7','000000001','design','01-01-2012');
+insert into Produto values('EAN00008','Categoria1','000000002','design','01-01-2012');
 
 insert into Fornecedor_Secundario values('000000002','EAN00007');
 insert into Fornecedor_Secundario values('000000002','EAN00006');
