@@ -1,4 +1,4 @@
-Pergunta1: (Perguntar ao prof qq ele quer com o justifique)
+Pergunta1:
 
     B-Tree index primario em Fornecedor.nif  
     B-Tree index em Produto.fornec_primario
@@ -7,8 +7,8 @@ Pergunta1: (Perguntar ao prof qq ele quer com o justifique)
     seja O(N_fornecedores) o que é bastante mais eficiente que O(N_produtos * N_fornecedores)
     que seria a complexidade do join se não tivesse estes indices.
     
-    Sparse secundary index on categoria = 'fruta': (Nao sei como testar em PSQL)
-        Ao ter os produtos da categoria 'fruta'indexados, seria muito mais facil
+    Secundary Hashed index na categoria = 'fruta':
+        Ao ter os produtos da categoria 'fruta' indexados, seria muito mais facil
         encontrálos, supondo que para fazer a procura de um Produtoda categoria
         fruta teriamos de percorrer a tabela toda então a complexidade seria
         O(N_prods * N_prods_fruta)o que é extremamente lento quando existem muitos
