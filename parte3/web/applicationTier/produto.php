@@ -46,7 +46,7 @@
 <?php
 
     $hadProblem = false;
-
+    
     function doesCatExist($catName,$database){
         $sql = "SELECT * FROM Categoria WHERE nome = '$catName';";
         $result = $database->query($sql);
@@ -56,7 +56,6 @@
         }
         return true;
     }
-
     function isRealDate($date) { 
         if (false === strtotime($date)) { 
             return false;
@@ -238,7 +237,6 @@
         echo("<button class=\"ink-button orange\" onclick='window.history.back()' style='float:left; clear:both'>Voltar</button>");
         return;
     }
-
     if(!doesCatExist($categoria,$db)){
         echo("<div class=\"ink-alert basic error\" role=\"alert\">
         <button class=\"ink-dismiss\">&times;</button>
@@ -251,8 +249,8 @@
     else {
         try {
             $host = "db.ist.utl.pt";
-            $user ="ist426018";
-            $password = "fcgs5019";
+            $user ="istxxxxxx";
+            $password = "xxxxx";
             $dbname = $user;
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
