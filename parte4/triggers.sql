@@ -29,15 +29,16 @@ if ans is null then ans := FALSE; end if;
 return ans;
 end; $$ language plpgsql;
 
--- PARA TESTAR:
-
--- SELECT primeAndSecToSameProduct('sadas','sdfsdf');
 
 ALTER TABLE Produto
    ADD CONSTRAINT cantExist CHECK(PrimaryExistsOnSecondary(forn_primario,ean) != TRUE);
 
 ALTER TABLE Fornecedor_secundario
    ADD CONSTRAINT cantExist CHECK(SecondaryExistsOnPrimary(nif,ean) != TRUE);
+
+-- PARA TESTAR:
+
+-- SELECT primeAndSecToSameProduct('sadas','sdfsdf');
 
 -- b)
 ALTER TABLE EventoReposicao

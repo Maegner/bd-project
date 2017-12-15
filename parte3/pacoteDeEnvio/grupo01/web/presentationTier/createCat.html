@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Projeto de BD </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- load Ink's CSS -->
+    <link rel="stylesheet" type="text/css" href="../ink/css/ink-flex.min.css">
+    <link rel="stylesheet" type="text/css" href="../ink/css/font-awesome.min.css">
+
+    <!-- load Ink's CSS for IE8 -->
+    <!--[if lt IE 9 ]>
+        <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+
+    <!-- test browser flexbox support and load legacy grid if unsupported -->
+    <script type="text/javascript" src="../ink/js/modernizr.js"></script>
+    <script type="text/javascript">
+        Modernizr.load({
+            test: Modernizr.flexbox,
+            nope: '../ink/css/ink-legacy.min.css'
+        });
+    </script>
+
+    <!-- load Ink's javascript files -->
+    <script type="text/javascript" src="../ink/js/holder.js"></script>
+    <script type="text/javascript" src="../ink/js/ink-all.min.js"></script>
+    <script type="text/javascript" src="../ink/js/autoload.js"></script>
+
+    <style type="text/css">
+        body {
+            background: #ededed;
+            background-image: url("../servers.jpg");
+            background-size: cover;
+        }
+        
+        header {
+            border-bottom: 1px solid #cecece;
+        }
+        
+        footer {
+            background: #ccc;
+        }
+        
+        .inputColumn {
+            text-align: left;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<script>
+    function changeToCreateCat() {
+        window.location.href = "./createSimpleCat.html";
+    }
+
+    function changeToCreateSuperCat() {
+        window.location.href = "./createSuperCat.html";
+    }
+</script>
+
+<body>
+    <div id="container">
+        <button class="ink-button" id="createCat" class="mainMenuButtons left" onclick="changeToCreateSuperCat()"> Criar Super-Categoria </button>
+        <button class="ink-button" id="createCat" class="mainMenuButtons right" onclick="changeToCreateCat()"> Criar Categoria Simples </button>
+    </div>
+    <div style="margin-left:auto; margin-right: auto; width: 5%;">
+        <div style="margin-left:auto; margin-right: auto; width: 5%;">
+            <button class="ink-button orange" onclick="window.history.back()" style="font-size: 120%">
+                Voltar
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
